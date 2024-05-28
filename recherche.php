@@ -1,12 +1,8 @@
-<!--Page d'accueil du site
- Contient les boutons de navigations (comme le reste des fenêtres sauf pour la connexion et le paiement pour le moment)
- Affiche l'actualité en menu défilant (voir Boostrap)
- En bas de page, copyright/infos importantes type adresse (comme le reste des fenêtres sauf pour la connexion et le paiement pour le moment)-->
 <!DOCTYPE html>  
 <head>  
-<title>Medicare | Accueil</title>  
+<title>Medicare | Recherche</title>  
 <meta charset="utf-8"/>  
-<link href="index.css" rel="stylesheet" type="text/css" />  
+<link href="recherche.css" rel="stylesheet" type="text/css" />  
  <!-- Dernier CSS compilé et minifié --> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
   
@@ -112,12 +108,12 @@
           
   	?><!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
        <button type="button" class="btn btn-link">
-            <a href = "index.php">Accueil</a></button> 
+            <a href = "index.html">Accueil</a></button> 
        <button type="button" class="btn btn-link">
             <a href = "parcourir.php">Parcourir</a>
        </button>
        <button type="button" class="btn btn-link">
-            <a href = "rdv.html">Rendez-vous</a>
+            <a href = "rdv.php">Rendez-vous</a>
        </button>
        <button type="button" class="btn btn-link">
             <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
@@ -130,7 +126,7 @@
           ?>
      <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
      <button type="button" class="btn btn-link">
-          <a href = "index.php">Accueil</a></button> 
+          <a href = "index.html">Accueil</a></button> 
      <button type="button" class="btn btn-link">
           <a href = "parcourir.php">Parcourir</a>
      </button>
@@ -146,5 +142,14 @@
      }
      mysqli_close($db_handle); 
      ?>
+     <form method="post" action="rechercher.php">
+     <table>
+        <tr>
+            <td>Votre recherche</td> 
+            <td><input type="text" name="recherche"></td>
+            <td><input type="submit" name= "rechercher" value="rechercher"></td>
+        </tr>
+     </table>
+    </form> 
 </body>  
 </html> 
