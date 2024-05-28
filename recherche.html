@@ -2,7 +2,7 @@
 <head>  
 <title>Medicare | Recherche</title>  
 <meta charset="utf-8"/>  
-<link href="index.css" rel="stylesheet" type="text/css" />  
+<link href="recherche.css" rel="stylesheet" type="text/css" />  
  <!-- Dernier CSS compilé et minifié --> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
   
@@ -28,10 +28,13 @@
           <a href = "recherche.html"><span class="glyphicon glyphicon-search"></span> Recherche </a>
      </button>
      <form method="post" action="rechercher.php">
+     <table>
         <tr>
             <td>Votre recherche</td> 
             <td><input type="text" name="recherche"></td>
+            <td><input type="submit" name= "rechercher" value="rechercher"></td>
         </tr>
+     </table>
     </form> 
 </body>  
 </html> 

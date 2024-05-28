@@ -18,7 +18,6 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 </head>  
 <body>
-     <?php $choix = isset($_POST["choix"])? $_POST["choix"] : ""?>
      <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
      <button type="button" class="btn btn-link">
           <a href = "index.html">Accueil</a></button> 
@@ -35,16 +34,28 @@
      </button>
      <!--Objectif recherché : garder la fenêtre en focntion du choix de l'utilisateur-->
      <div class="parcours">
-        <div class="dropdown" name = "choix" > 
-            <button class="btn btn-success" class="btn btn-default dropdown-toggle" type="button"  
-                                  data-toggle="dropdown">Sélectionnez un service
-            <span class="caret"></span></button>
-        <ul class="dropdown-menu"> 
-            <li><a href ="parcourir.php" value = "medecin">Médecins</a></li> 
-            <li><a href ="parcourir.php" value = "service">Services</a></li> 
-            <li><a href ="parcourir.php" value = "labo">Laboratoires</a></li>
-        </ul> 
+          <select name="compte" id="compte">
+               <optgroup label="choix">
+               <option value="medecins" id='choix' onclick ="document.getElementById('medecins').style.display = 'block' ;
+               document.getElementById('services').style.display = 'none';
+               document.getElementById('labos').style.display = 'none' ;">Médecins</option>
+               <option value="services" id='choix' onclick ="document.getElementById('medecins').style.display = 'none' ;
+               document.getElementById('services').style.display = 'block' ;
+               document.getElementById('labos').style.display = 'none' ;">Servcies</option>
+               <option value = "labos" id = 'choix' onclick ="document.getElementById('medecins').style.display = 'none' ;
+               document.getElementById('services').style.display = 'none' ;
+               document.getElementById('labos').style.display = 'block' ;">Laboratoires</option>
+               </optgroup>
+          </select>
      </div>
-     <?php echo $choix?>
+     <div id = "medecins">
+          <p>Les médecins</p>
+     </div>
+     <div id = "services">
+          <p>Les services</p>
+     </div>
+     <div id = "labos">
+          <p>Les labos</p>
+     </div>
 </body>  
 </html> 

@@ -3,6 +3,7 @@
 <head>
 <title>Medicare | Inscription</title>
     <meta charset="utf-8">
+    <link href="traitement_inscription.css" rel="stylesheet" type="text/css" />  
 </head>
 <body>
 <?php
