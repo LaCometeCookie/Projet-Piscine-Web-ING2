@@ -15,6 +15,16 @@
 <body>
     <form method="post" action="index.php">
         <table>
+        <tr> 
+            <!--Optgroup permet de choisir un item parmi ceux proposés, le même ID est utilisé ensuite dans le traitement des données-->
+            <td>Compte</td> 
+            <td><select name="compte" id="compte">
+                <optgroup label="compte">
+                    <option value="client" id='compte'>Client</option>
+                    <option value="admin" id='compte'>Administrateur</option>
+                </optgroup>
+            </select></td>
+        </tr>
         <tr>
             <td>Mail</td> 
             <td><input type="text" name="mail" required></td>
