@@ -50,6 +50,7 @@ if(isset($_POST['mdp']))
             'Paiement' => $_POST['paiement'],
             )); //(Enfin, on ajoute toutes les valeurs non automatiques)
         }
+        sleep(1);//Temps de pause pour l'action (petit plus réaliste)
         ?>
         <h3>Votre compte a été créé</h3>
         <a href="index.php">Retour à l'accueil</a>
@@ -57,9 +58,10 @@ if(isset($_POST['mdp']))
     }
     else
     {
+        sleep(1);//Temps de pause pour l'action (petit plus réaliste)
         ?>
         <h4>Erreur de saisie du mot de passe</h4>
-        <br><a href="inscription.html">Retour</a>
+        <br><a href="inscription.php">Retour</a>
         <?php
     }
 }    

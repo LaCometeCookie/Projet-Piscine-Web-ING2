@@ -20,6 +20,7 @@
 <body>
      <?php
      session_start();
+     sleep(1);//Temps de pause pour l'action (petit plus réaliste)
 	//identifier le nom de base de données 
 	$database = "pj web 2024"; 
 	//connectez-vous dans votre BDD 
@@ -56,7 +57,7 @@
        <button type="button" class="btn btn-link">
             <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
        <button type="button" class="btn btn-info"> 
-            <a href = "recherche.html"><span class="glyphicon glyphicon-search"></span> Recherche </a>
+            <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
        </button> <?php
 	 }
      else
@@ -72,7 +73,7 @@
           <a href = "rdv.php">Rendez-vous</a>
      </button>
      <button type="button" class="btn btn-link">
-          <a href = "connexion.html">Compte</a></button>
+          <a href = "connexion.php">Compte</a></button>
      <button type="button" class="btn btn-info"> 
           <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
      </button> 

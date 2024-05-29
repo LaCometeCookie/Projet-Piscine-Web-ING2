@@ -13,6 +13,7 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 </head>  
 <body>
+    <?php sleep(1);//Temps de pause pour l'action (petit plus réaliste)?>
     <form method="post" action="index.php">
         <table>
         <tr> 
@@ -38,7 +39,7 @@
     </form>
     <br><br>
     <a href="mdp_o.php">Mot de passe oublié</a><br/>
-    <form action="inscription.html" method="post"><br>
+    <form action="inscription.php" method="post"><br>
         <label for="compte">Pas encore de compte ?</label><br><br>
         <input type="submit" value="S'inscrire" class="inscrit">
     </form>

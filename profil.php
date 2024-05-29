@@ -19,6 +19,7 @@
 <body>
 	<?php
      session_start();
+     sleep(1);//Temps de pause pour l'action (petit plus réaliste)
 	//identifier le nom de base de données 
 	$database = "pj web 2024"; 
 	//connectez-vous dans votre BDD 

@@ -14,6 +14,7 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 </head>
 <body>
+<?php sleep(1);//Temps de pause pour l'action (petit plus réaliste)?>
 <h4> Veuillez renseigner les informations</h4>
     <form method="POST" action="traitement_inscription.php" name="form1">
         <table>
