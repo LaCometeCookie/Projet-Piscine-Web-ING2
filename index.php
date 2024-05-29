@@ -29,6 +29,7 @@
 	$compte = isset($_POST["compte"])? $_POST["compte"] : "";
 	$ID_session = NULL;
 	$ok=FALSE;
+	$tentative=FALSE;
 	$bdd= NULL;
     try
     {
@@ -78,6 +79,10 @@
 			}
 			$reponse->closeCursor();
 		}
+		else
+		{
+			$tentative=TRUE;
+		}
     }
     else if ($compte == "client")
     {
@@ -118,6 +123,10 @@
 				$ok=TRUE;
 			}
 			$reponse->closeCursor();
+		}
+		else
+		{
+			$tentative=TRUE;
 		}
     }
 	else if ($compte == "medecin")
@@ -160,6 +169,10 @@
 			}
 			$reponse->closeCursor();
 		}
+		else
+		{
+			$tentative=TRUE;
+		}
     }
 	if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) 
 	{
@@ -193,27 +206,34 @@
 				<a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
 		</button> 
 		<?php 
-		}
-		else
-		{
-			?>
-		<!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
-		<button type="button" class="btn btn-link">
-			<a href = "index.php">Accueil</a></button> 
-		<button type="button" class="btn btn-link">
-			<a href = "parcourir.php">Parcourir</a>
-		</button>
-		<button type="button" class="btn btn-link">
-			<a href = "rdv.php">Rendez-vous</a>
-		</button>
-		<button type="button" class="btn btn-link">
-			<a href = "connexion.php">Compte</a></button>
-		<button type="button" class="btn btn-info"> 
-			<a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-		</button> 
+	}
+	else if (!($tentative))
+	{
+		?>
+	<!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
+	<button type="button" class="btn btn-link">
+		<a href = "index.php">Accueil</a></button> 
+	<button type="button" class="btn btn-link">
+		<a href = "parcourir.php">Parcourir</a>
+	</button>
+	<button type="button" class="btn btn-link">
+		<a href = "rdv.php">Rendez-vous</a>
+	</button>
+	<button type="button" class="btn btn-link">
+		<a href = "connexion.php">Compte</a></button>
+	<button type="button" class="btn btn-info"> 
+		<a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
+	</button> 
+	<?php
+	}
+	else if($tentative)
+	{
+		?>
+		<h4>Identifiant ou mot de passe incorrect</h4>
+		<br><a href="connexion.php">Retour</a>
 		<?php
-		}
-	mysqli_close($db_handle); 
+	}
+	mysqli_close($db_handle);
 	?>
 </body>  
 </html> 

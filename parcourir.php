@@ -27,6 +27,14 @@
 	//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien) 
 	$db_handle = mysqli_connect('localhost', 'root', '' ); 
 	$db_found = mysqli_select_db($db_handle, $database);
+     try // Test de connexion à la base de données (retorune une erreur en cas d'échec)
+     {
+     $bdd=new PDO('mysql:host=localhost;dbname=pj web 2024;charset=utf8', 'root', ''); //On y référence le nom d'utilisateur et le mot de passe, la base à utiliser et l'encodage
+     }
+     catch (Exception $e)
+     {
+     die('Erreur : ' . $e->getMessage()); // En cas d'erreur de connexion, un message est affiché
+     }
      if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) 
      {
           // L'utilisateur est connecté
@@ -98,7 +106,35 @@
           </select>
      </div>
      <div id = "medecins" style="display: none">
-          <p>Les médecins</p>
+		<table class="centre">
+		<tr>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>Spécialité</th>
+			<th>Mail</th>
+               <th>Telephone</th>
+               <th>CV</th>
+		</tr>
+	<?php 
+	$reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins ORDER BY Nom');
+	while ($donnees = $reponse->fetch())
+	{
+	?>
+	
+		<tr>
+			<td><?php  echo $donnees['Nom']; ?></td>
+			<td><?php  echo $donnees['Prenom']; ?></td>
+			<td><?php  echo $donnees['specialite']; ?></td>
+			<td><?php  echo $donnees['Mail']; ?></td>
+               <td><?php  echo $donnees['telephone']; ?></td>
+               <td><?php  echo $donnees['CV']; ?></td>
+		</tr>
+
+	<?php  
+	}
+	$reponse->closeCursor();
+	?>
+	</table>
      </div>
      <div id = "services" style="display: none">
           <p>Les services</p>
