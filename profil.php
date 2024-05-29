@@ -1,8 +1,12 @@
-<!DOCTYPE html>  
+<!--Page d'accueil du site
+ Contient les boutons de navigations (comme le reste des fenêtres sauf pour la connexion et le paiement pour le moment)
+ Affiche l'actualité en menu défilant (voir Boostrap)
+ En bas de page, copyright/infos importantes type adresse (comme le reste des fenêtres sauf pour la connexion et le paiement pour le moment)-->
+ <!DOCTYPE html>  
 <head>  
-<title>Medicare | RDV</title>  
+<title>Medicare | Accueil</title>  
 <meta charset="utf-8"/>  
-<link href="rdv.css" rel="stylesheet" type="text/css" />  
+<link href="index.css" rel="stylesheet" type="text/css" />  
  <!-- Dernier CSS compilé et minifié --> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
   
@@ -52,28 +56,15 @@
             <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
        <button type="button" class="btn btn-info"> 
             <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-       </button><?php
-	 }
+       </button> 
+       <form method = "post" action = "logout.php"><input type="submit" name= "Deconnexion" value="deconnexion" onclick="return window.confirm('Êtes-vous sûr ?')"></form><?php
+	}
      else
      {
-          ?>
-     <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
-     <button type="button" class="btn btn-link">
-          <a href = "index.php">Accueil</a></button> 
-     <button type="button" class="btn btn-link">
-          <a href = "parcourir.php">Parcourir</a>
-     </button>
-     <button type="button" class="btn btn-link">
-          <a href = "rdv.php">Rendez-vous</a>
-     </button>
-     <button type="button" class="btn btn-link">
-          <a href = "connexion.html">Compte</a></button>
-     <button type="button" class="btn btn-info"> 
-          <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-     </button> 
-     <?php
+        echo "Vous n'êtes pas connecté";
+        ?><input type="text" name="compte" id="compte" value="<?php echo $compte;?>"><form method = "post" action = "index.php"><input type="submit" name= "accueil" value="accueil"></form><?php
      }
      mysqli_close($db_handle); 
-     ?> 
+     ?>
 </body>  
 </html> 
