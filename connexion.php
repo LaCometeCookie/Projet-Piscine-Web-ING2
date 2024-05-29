@@ -22,6 +22,7 @@
             <td><select name="compte" id="compte">
                 <optgroup label="compte">
                     <option value="client" id='compte'>Client</option>
+                    <option value="medecin" id='compte'>Médecin</option>
                     <option value="admin" id='compte'>Administrateur</option>
                 </optgroup>
             </select></td>

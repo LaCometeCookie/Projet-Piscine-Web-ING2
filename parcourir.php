@@ -83,7 +83,7 @@
      ?>
      <!--Objectif recherché : garder la fenêtre en focntion du choix de l'utilisateur-->
      <div class="parcours">
-          <select name="compte" id="compte">
+          <select name="choix" id="choix">
                <optgroup label="choix">
                <option value="medecins" id='choix' onclick ="document.getElementById('medecins').style.display = 'block' ;
                document.getElementById('services').style.display = 'none';

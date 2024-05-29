@@ -120,6 +120,47 @@
 			$reponse->closeCursor();
 		}
     }
+	else if ($compte == "medecin")
+    {
+		if(isset($_POST['ID_connexion']))
+		{
+			$ID_session = $_POST['ID_connexion'];
+			$reponse = $bdd->prepare('SELECT ID, Prenom FROM medecins WHERE ID_connexion = :ID_connexion');
+			$reponse->execute(array(
+			'ID_connexion' => $ID_session
+			));
+			$donnees = $reponse->fetch();
+			$ok = TRUE;
+		}
+		elseif(isset($_POST['mail']) AND isset($_POST['mdp']))
+		{
+			$i = $_POST['mail'];
+			$m = $_POST['mdp'];
+			$reponse = $bdd->prepare('SELECT ID, Mail, mdp, Nom, Prenom FROM medecins WHERE Mail= :Mail AND mdp= :mdp');
+			$reponse->execute(array(
+			'Mail' => $i,
+			'mdp' => $m
+			));
+			$donnees = $reponse->fetch();
+			if (isset($donnees['Mail']) AND isset($donnees['mdp']))
+			{
+				$ID_session = random_int(1000000, 1000000000);
+				$query = $bdd->prepare('UPDATE medecins SET ID_connexion = :ID_connexion WHERE ID = :ID');
+				$query->execute(array(
+					'ID_connexion' => $ID_session,
+					'ID' => $donnees['ID']
+				));
+				// Stocker les informations de l'utilisateur dans la session
+				$_SESSION['ID_session'] = $ID_session;
+				$_SESSION['ID'] = $donnees['ID'];
+				$_SESSION['Nom'] = $donnees['Nom'];
+				$_SESSION['Prenom'] = $donnees['Prenom'];
+				$_SESSION['compte'] = $compte;
+				$ok=TRUE;
+			}
+			$reponse->closeCursor();
+		}
+    }
 	if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) 
 	{
 		// L'utilisateur est connecté

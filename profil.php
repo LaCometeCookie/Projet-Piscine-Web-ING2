@@ -57,8 +57,83 @@
             <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
        <button type="button" class="btn btn-info"> 
             <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-       </button> 
-       <form method = "post" action = "logout.php"><input type="submit" name= "Deconnexion" value="deconnexion" onclick="return window.confirm('Êtes-vous sûr ?')"></form><?php
+       </button>
+       <?php
+          if($donnees['compte'] == "medecin")
+          {?>
+          <div class="parcours">
+               <select name="choix" id="choix">
+                    <optgroup label="choix">
+                    <option value="infos" id='choix' onclick ="document.getElementById('infos').style.display = 'block' ;
+                    document.getElementById('labos').style.display = 'none' ;">Infos personnelles</option>
+                    <option value = "labos" id = 'choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('labos').style.display = 'block' ;">Laboratoires</option>
+                    </optgroup>
+               </select>
+               </div>
+               <div id = "infos" style="display: none">
+                    <p>Les infos personnelles</p>
+               </div>
+               <div id = "labos" style="display: none">
+                    <p>Les labos</p>
+               </div>
+               <form method = "post" action = "logout.php"><button type="button" class="btn btn-link">
+            <a href = "logout.php" onclick="return window.confirm('Êtes-vous sûr ?')">Se déconnecter</a>
+          </button></form></form><?php
+          }
+          if($donnees['compte'] == "admin")
+          {?>
+          <div class="parcours">
+               <select name="choix" id="choix">
+                    <optgroup label="choix">
+                    <option value="infos" id='choix' onclick ="document.getElementById('infos').style.display = 'block' ;
+                    document.getElementById('medecin_plus').style.display = 'none';
+                    document.getElementById('labos').style.display = 'none' ;">Infos personnelles</option>
+                    <option value="medecin_plus" id='choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('medecin_plus').style.display = 'block' ;
+                    document.getElementById('labos').style.display = 'none' ;">Gérer le personnel</option>
+                    <option value = "labos" id = 'choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('medecin_plus').style.display = 'none' ;
+                    document.getElementById('labos').style.display = 'block' ;">Laboratoires</option>
+                    </optgroup>
+               </select>
+               </div>
+               <div id = "infos" style="display: none">
+                    <p>Les infos personnelles</p>
+               </div>
+               <div id = "medecin_plus" style="display: none">
+                    <form method = "post" action = "medecins.php"><input type = "submit" value="Gérer le personnel"></form>
+               </div>
+               <div id = "labos" style="display: none">
+                    <p>Les labos</p>
+               </div>
+          <form method = "post" action = "logout.php"><button type="button" class="btn btn-link">
+            <a href = "logout.php" onclick="return window.confirm('Êtes-vous sûr ?')">Se déconnecter</a>
+          </button></form><?php
+          }
+          if($donnees['compte'] == "client")
+          {?>
+          <div class="parcours">
+               <select name="choix" id="choix">
+                    <optgroup label="choix">
+                    <option value="infos" id='choix' onclick ="document.getElementById('infos').style.display = 'block' ;
+                    document.getElementById('rdv').style.display = 'none';">Infos personnelles</option>
+                    <option value="rdv" id='choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('rdv').style.display = 'block' ;">Mes RDV</option>
+                    </optgroup>
+               </select>
+               </div>
+               <div id = "infos" style="display: none">
+                    <p>Les infos personnelles</p>
+               </div>
+               <div id = "rdv" style="display: none">
+                    <?php // Afficher RDV avec SQL?>
+                    <form method = "post" action = "rdv.php"><input type = "submit" value="Prendre un RDV"> 
+               </div>
+               <form method = "post" action = "logout.php"><button type="button" class="btn btn-link">
+            <a href = "logout.php" onclick="return window.confirm('Êtes-vous sûr ?')">Se déconnecter</a>
+          </button></form><?php
+          }
 	}
      else
      {
