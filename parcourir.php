@@ -87,25 +87,25 @@
      </button> 
      <?php
      }
-     mysqli_close($db_handle); 
      ?>
      <!--Objectif recherché : garder la fenêtre en focntion du choix de l'utilisateur-->
      <div class="parcours">
           <select name="choix" id="choix">
                <optgroup label="choix">
-               <option value="medecins" id='choix' onclick ="document.getElementById('medecins').style.display = 'block' ;
-               document.getElementById('services').style.display = 'none';
-               document.getElementById('labos').style.display = 'none' ;">Médecins</option>
-               <option value="services" id='choix' onclick ="document.getElementById('medecins').style.display = 'none' ;
-               document.getElementById('services').style.display = 'block' ;
-               document.getElementById('labos').style.display = 'none' ;">Servcies</option>
-               <option value = "labos" id = 'choix' onclick ="document.getElementById('medecins').style.display = 'none' ;
-               document.getElementById('services').style.display = 'none' ;
+               <option value="medecinsg" id='choix' onclick ="document.getElementById('medecinsg').style.display = 'block' ;
+               document.getElementById('medecinsp').style.display = 'none';
+               document.getElementById('labos').style.display = 'none' ;">Médecins généralistes</option>
+               <option value="medecinsp" id='choix' onclick ="document.getElementById('medecinsg').style.display = 'none' ;
+               document.getElementById('medecinsp').style.display = 'block' ;
+               document.getElementById('labos').style.display = 'none' ;">Médecins spécialistes</option>
+               <option value = "labos" id = 'choix' onclick ="document.getElementById('medecinsg').style.display = 'none' ;
+               document.getElementById('medecinsp').style.display = 'none' ;
                document.getElementById('labos').style.display = 'block' ;">Laboratoires</option>
                </optgroup>
           </select>
      </div>
-     <div id = "medecins" style="display: none">
+     <div id = "medecinsg" style="display: none">
+     <p>Les médecins généralistes</p>
 		<table class="centre">
 		<tr>
 			<th>Nom</th>
@@ -115,32 +115,83 @@
                <th>Telephone</th>
                <th>CV</th>
 		</tr>
-	<?php 
-	$reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins ORDER BY Nom');
-	while ($donnees = $reponse->fetch())
-	{
-	?>
-	
-		<tr>
-			<td><?php  echo $donnees['Nom']; ?></td>
-			<td><?php  echo $donnees['Prenom']; ?></td>
-			<td><?php  echo $donnees['specialite']; ?></td>
-			<td><?php  echo $donnees['Mail']; ?></td>
-               <td><?php  echo $donnees['telephone']; ?></td>
-               <td><?php  echo $donnees['CV']; ?></td>
-		</tr>
+          <?php //A bien agencer
+          $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins WHERE specialite = "generaliste" ORDER BY Nom');
+          while ($donnees = $reponse->fetch())
+          {
+          ?>
+          
+               <tr>
+                    <td><?php  echo $donnees['Nom']; ?></td>
+                    <td><?php  echo $donnees['Prenom']; ?></td>
+                    <td><?php  echo $donnees['specialite']; ?></td>
+                    <td><?php  echo $donnees['Mail']; ?></td>
+                    <td>+33<?php  echo $donnees['telephone']; ?></td>
+                    <td><?php  echo $donnees['CV']; ?></td>
+               </tr>
 
-	<?php  
-	}
-	$reponse->closeCursor();
-	?>
-	</table>
+          <?php  
+          }
+          $reponse->closeCursor();
+          ?>
+          </table>
      </div>
-     <div id = "services" style="display: none">
-          <p>Les services</p>
+     <div id = "medecinsp" style="display: none">
+          <p>Les médecins spécialistes</p>
+          <table class="centre">
+		<tr>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>Spécialité</th>
+			<th>Mail</th>
+               <th>Telephone</th>
+               <th>CV</th>
+		</tr>
+          <?php //A bien agencer
+          $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins WHERE specialite != "generaliste" ORDER BY Nom');
+          while ($donnees = $reponse->fetch())
+          {
+          ?>
+          
+               <tr>
+                    <td><?php  echo $donnees['Nom']; ?></td>
+                    <td><?php  echo $donnees['Prenom']; ?></td>
+                    <td><?php  echo $donnees['specialite']; ?></td>
+                    <td><?php  echo $donnees['Mail']; ?></td>
+                    <td>+33<?php  echo $donnees['telephone']; ?></td>
+                    <td><?php  echo $donnees['CV']; ?></td>
+               </tr>
+
+          <?php  
+          }
+          $reponse->closeCursor();
+          ?>
+          </table>
      </div>
      <div id = "labos" style="display: none">
           <p>Les labos</p>
+          <table>
+          <?php //A bien agencer
+          $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail FROM labos ORDER BY Nom');
+          while ($donnees = $reponse->fetch())
+          {
+          ?>
+          
+               <tr>
+                    <td><?php  echo $donnees['Nom']; ?></td>
+                    <td><?php  echo $donnees['Adresse']; ?></td>
+                    <td><?php  echo $donnees['Mail']; ?></td>
+                    <td>+33<?php  echo $donnees['telephone']; ?></td>
+                    <!--Infos services à gérer (apparition/disparition)-->
+               </tr>
+          <?php  
+          }
+          $reponse->closeCursor();
+          ?>
+          </table>
      </div>
+     <?php
+          mysqli_close($db_handle); 
+          ?>
 </body>  
 </html> 

@@ -44,28 +44,28 @@
                 </optgroup>
             </select></td>
         </tr>
-    </table>
-    <!--But recherché : afficher les deux derniers champs uniquement dans le cas d'un compte client (utilisation de style display juste au dessus pour le choix du compte)-->
-    <div id = "clientplus">
-        <table>
-            <tr>
-                <td>Adresse</td> 
-                <td><input type="text" name="adresse" required></td>
-            </tr>
-            <tr> 
-                <!--Optgroup permet de choisir un item parmi ceux proposés, le même ID est utilisé ensuite dans le traitement des données-->
-                <td>Moyen de paiement</td> 
-                <td><select name="paiement" id="paiement">
-                    <optgroup label="paiement">
-                        <option value="visa" id='paiement'>Visa</option>
-                        <option value="masterCard" id='paiement'>MasterCard</option>
-                        <option value="american" id='paiement'>American Express</option>
-                        <option value="paypal" id='paiement'>PayPal</option>
-                    </optgroup>
-                </select></td>
-            </tr>
         </table>
-    </div>
+        <!--But recherché : afficher les deux derniers champs uniquement dans le cas d'un compte client (utilisation de style display juste au dessus pour le choix du compte)-->
+        <div id = "clientplus">
+            <table>
+                <tr>
+                    <td>Adresse</td> 
+                    <td><input type="text" name="adresse"></td>
+                </tr>
+                <tr> 
+                    <!--Optgroup permet de choisir un item parmi ceux proposés, le même ID est utilisé ensuite dans le traitement des données-->
+                    <td>Moyen de paiement</td> 
+                    <td><select name="paiement" id="paiement">
+                        <optgroup label="paiement">
+                            <option value="visa" id='paiement'>Visa</option>
+                            <option value="masterCard" id='paiement'>MasterCard</option>
+                            <option value="american" id='paiement'>American Express</option>
+                            <option value="paypal" id='paiement'>PayPal</option>
+                        </optgroup>
+                    </select></td>
+                </tr>
+            </table>
+        </div>
         <!--onclick permet d'afficher un message avant de confirmer une action-->
         <p>
             <input type="submit" value="S'inscrire" class="inscrit" onclick="return window.confirm('Voulez-vous continuer ?')">

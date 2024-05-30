@@ -26,6 +26,14 @@
 	//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien) 
 	$db_handle = mysqli_connect('localhost', 'root', '' ); 
 	$db_found = mysqli_select_db($db_handle, $database);
+     try // Test de connexion à la base de données (retorune une erreur en cas d'échec)
+     {
+          $bdd=new PDO('mysql:host=localhost;dbname=pj web 2024;charset=utf8', 'root', ''); //On y référence le nom d'utilisateur et le mot de passe, la base à utiliser et l'encodage
+     }
+     catch (Exception $e)
+     {
+          die('Erreur : ' . $e->getMessage()); // En cas d'erreur de connexion, un message est affiché
+     }
      if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) 
      {
           // L'utilisateur est connecté
@@ -66,16 +74,36 @@
                     <optgroup label="choix">
                     <option value="infos" id='choix' onclick ="document.getElementById('infos').style.display = 'block' ;
                     document.getElementById('labos').style.display = 'none' ;">Infos personnelles</option>
-                    <option value = "labos" id = 'choix' onclick ="document.getElementById('infos').style.display = 'none' ;
-                    document.getElementById('labos').style.display = 'block' ;">Laboratoires</option>
+                    <option value = "rdv" id = 'choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('rdv').style.display = 'block' ;">Laboratoires</option>
                     </optgroup>
                </select>
                </div>
                <div id = "infos" style="display: none">
                     <p>Les infos personnelles</p>
+                    <?php 
+                    $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins WHERE ID = :ID AND Nom = :Nom');
+                    while ($donnees = $reponse->fetch())
+                    {
+                    ?>
+                    
+                         <tr>
+                              <td><?php  echo $donnees['Nom']; ?></td>
+                              <td><?php  echo $donnees['Prenom']; ?></td>
+                              <td><?php  echo $donnees['specialite']; ?></td>
+                              <td><?php  echo $donnees['Mail']; ?></td>
+                              <td>+33<?php  echo $donnees['telephone']; ?></td>
+                              <td><?php  echo $donnees['CV']; ?></td>
+                         </tr>
+
+                    <?php  
+                    }
+                    $reponse->closeCursor();
+                    ?>
                </div>
-               <div id = "labos" style="display: none">
-                    <p>Les labos</p>
+               <div id = "rdv" style="display: none">
+                    <p>Mes RDV</p>
+                    <?php // Afficher RDV avec SQL?>
                </div>
                <form method = "post" action = "logout.php"><button type="button" class="btn btn-link">
             <a href = "logout.php" onclick="return window.confirm('Êtes-vous sûr ?')">Se déconnecter</a>
@@ -102,10 +130,46 @@
                     <p>Les infos personnelles</p>
                </div>
                <div id = "medecin_plus" style="display: none">
-                    <form method = "post" action = "medecins.php"><input type = "submit" value="Gérer le personnel"></form>
+               <?php //A mettre en XML
+               $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins ORDER BY Nom');
+               while ($donnees = $reponse->fetch())
+               {
+               ?>
+               
+                    <tr>
+                         <td><?php  echo $donnees['Nom']; ?></td>
+                         <td><?php  echo $donnees['Prenom']; ?></td>
+                         <td><?php  echo $donnees['specialite']; ?></td>
+                         <td><?php  echo $donnees['Mail']; ?></td>
+                         <td>+33<?php  echo $donnees['telephone']; ?></td>
+                         <td><?php  echo $donnees['CV']; ?></td>
+                    </tr>
+
+               <?php  
+               }
+               $reponse->closeCursor();
+               ?>
+                    <p><form method = "post" action = "medecins.php"><input type = "submit" value="Gérer le personnel"></form></p>
                </div>
                <div id = "labos" style="display: none">
-                    <p>Les labos</p>
+               <?php 
+               $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail FROM labos ORDER BY Nom');
+               while ($donnees = $reponse->fetch())
+               {
+               ?>
+               
+                    <tr>
+                         <td><?php  echo $donnees['Nom']; ?></td>
+                         <td><?php  echo $donnees['Adresse']; ?></td>
+                         <td><?php  echo $donnees['Mail']; ?></td>
+                         <td>+33<?php  echo $donnees['telephone']; ?></td>
+                         <!--Infos services à gérer (apparition/disparition)-->
+                    </tr>
+               <?php  
+               }
+               $reponse->closeCursor();
+               ?>
+                    <p><form method = "post" action = "labos.php"><input type = "submit" value="Gérer les labos"></form></p>
                </div>
           <form method = "post" action = "logout.php"><button type="button" class="btn btn-link">
             <a href = "logout.php" onclick="return window.confirm('Êtes-vous sûr ?')">Se déconnecter</a>
@@ -127,6 +191,7 @@
                     <p>Les infos personnelles</p>
                </div>
                <div id = "rdv" style="display: none">
+                    <p>Mes RDV</p>
                     <?php // Afficher RDV avec SQL?>
                     <form method = "post" action = "rdv.php"><input type = "submit" value="Prendre un RDV"> 
                </div>
