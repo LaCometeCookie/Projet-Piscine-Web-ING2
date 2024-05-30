@@ -87,8 +87,8 @@
                         <label for="biologie_femme">Biologie de la femme enceinte</label><br>
                         <input type = "checkbox" name = "service[]" id = "service" value = "biologie_route">
                         <label for="biologie_route">Biologie de routine</label><br>
-                        <input type = "checkbox" name = "service[]" id = "service" value = "cencerologie">
-                        <label for="cencerologie">Cancérologie</label><br>
+                        <input type = "checkbox" name = "service[]" id = "service" value = "cancerologie">
+                        <label for="cancerologie">Cancérologie</label><br>
                         <input type = "checkbox" name = "service[]" id = "service" value = "gynecologie">
                         <label for="gynecologie">Gynécologie</label><br>
                     </td>

@@ -130,6 +130,16 @@
                     <p>Les infos personnelles</p>
                </div>
                <div id = "medecin_plus" style="display: none">
+               <p>Liste du personnel</p>
+               <table>
+                    <tr>
+                         <th>Nom</th>
+                         <th>Prenom</th>
+                         <th>Spécialité</th>
+                         <th>Mail</th>
+                         <th>Telephone</th>
+                         <th>CV</th>
+                    </tr>
                <?php //A mettre en XML
                $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins ORDER BY Nom');
                while ($donnees = $reponse->fetch())
@@ -149,26 +159,42 @@
                }
                $reponse->closeCursor();
                ?>
+               </table>
                     <p><form method = "post" action = "medecins.php"><input type = "submit" value="Gérer le personnel"></form></p>
                </div>
                <div id = "labos" style="display: none">
+               <p>Liste des laboratoires</p>
+               <table>
+               <tr>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Salle</th>
+                    <th>Mail</th>
+                    <th>Telephone</th>
+                    <th>Service1</th>
+                    <th>Service2</th>
+                    <th>Service3</th>
+               </tr>
                <?php 
-               $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail FROM labos ORDER BY Nom');
+               $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail, Service1, Service2, Service3 FROM labos ORDER BY Nom');
                while ($donnees = $reponse->fetch())
                {
                ?>
-               
                     <tr>
                          <td><?php  echo $donnees['Nom']; ?></td>
                          <td><?php  echo $donnees['Adresse']; ?></td>
+                         <td><?php  echo $donnees['Salle']; ?></td>
                          <td><?php  echo $donnees['Mail']; ?></td>
                          <td>+33<?php  echo $donnees['telephone']; ?></td>
-                         <!--Infos services à gérer (apparition/disparition)-->
+                         <td><?php  echo $donnees['Service1']; ?></td>
+                         <td><?php  echo $donnees['Service2']; ?></td>
+                         <td><?php  echo $donnees['Service3']; ?></td>
                     </tr>
                <?php  
                }
                $reponse->closeCursor();
                ?>
+               </table>
                     <p><form method = "post" action = "labos.php"><input type = "submit" value="Gérer les labos"></form></p>
                </div>
           <form method = "post" action = "logout.php"><button type="button" class="btn btn-link">

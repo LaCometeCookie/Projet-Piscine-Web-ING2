@@ -54,7 +54,7 @@
        <button type="button" class="btn btn-info"> 
             <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
        </button><?php
-	 }
+	}
      else
      {
           ?>

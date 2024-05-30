@@ -128,6 +128,10 @@
                     <td><?php  echo $donnees['Mail']; ?></td>
                     <td>+33<?php  echo $donnees['telephone']; ?></td>
                     <td><?php  echo $donnees['CV']; ?></td>
+                    <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">
+                    <a href = "rdv.php">Prendre un RDV</a></form></td>
+                    <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">
+                    <a href = "rdv.php">Contacter</a></form></td>
                </tr>
 
           <?php  
@@ -160,6 +164,10 @@
                     <td><?php  echo $donnees['Mail']; ?></td>
                     <td>+33<?php  echo $donnees['telephone']; ?></td>
                     <td><?php  echo $donnees['CV']; ?></td>
+                    <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">
+                    <a href = "rdv.php">Prendre un RDV</a></form></td>
+                    <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">
+                    <a href = "rdv.php">Contacter</a></form></td>
                </tr>
 
           <?php  
@@ -169,26 +177,65 @@
           </table>
      </div>
      <div id = "labos" style="display: none">
+          <div id = "labinfo" style="display: block">
+               <p>Les labos</p>
+               <table>
+                    <tr>
+                         <th>Nom</th>
+                         <th>Adresse</th>
+                         <th>Salle</th>
+                         <th>Mail</th>
+                         <th>Telephone</th>
+                    </tr>
+               <?php //A bien agencer
+               $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail FROM labos ORDER BY Nom');
+               while ($donnees = $reponse->fetch())
+               {
+               ?>
+               
+                    <tr>
+                         <td><?php  echo $donnees['Nom']; ?></td>
+                         <td><?php  echo $donnees['Adresse']; ?></td>
+                         <td><?php  echo $donnees['Salle']; ?></td>
+                         <td><?php  echo $donnees['Mail']; ?></td>
+                         <td>+33<?php  echo $donnees['telephone']; ?></td>
+                         <td><button type="button" class="btn btn-link">
+                         <a href = "#" onclick="document.getElementById('service').style.display = 'block';
+                         document.getElementById('labinfo').style.display = 'none'">Les services</a></button></td>
+                         <!--Infos services à gérer (apparition/disparition)-->
+                    </tr>
+                    
+                    <?php  
+               }
+               $reponse->closeCursor();
+               ?>
+               </table>
+          </div>
+          <div id = "service" style = "display:none">
           <p>Les labos</p>
-          <table>
-          <?php //A bien agencer
-          $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail FROM labos ORDER BY Nom');
-          while ($donnees = $reponse->fetch())
-          {
-          ?>
-          
-               <tr>
-                    <td><?php  echo $donnees['Nom']; ?></td>
-                    <td><?php  echo $donnees['Adresse']; ?></td>
-                    <td><?php  echo $donnees['Mail']; ?></td>
-                    <td>+33<?php  echo $donnees['telephone']; ?></td>
-                    <!--Infos services à gérer (apparition/disparition)-->
-               </tr>
-          <?php  
-          }
-          $reponse->closeCursor();
-          ?>
-          </table>
+               <table>
+               <?php //A bien agencer
+               $reponse = $bdd->query('SELECT Service1, Service2, Service3 FROM labos WHERE Nom = :Nom');
+               $reponse->execute(array(
+                    'Nom' => $_POST[$donnees['Nom']],
+               ));
+               while ($donnees = $reponse->fetch())
+               {
+               ?>
+                    <tr>
+                         <td><?php  echo $donnees['Service1']; ?></td>
+                         <td><?php  echo $donnees['Service2']; ?></td>
+                         <td><?php  echo $donnees['Service3']; ?></td>
+                         <td><button type="button" class="btn btn-link">
+                         <a href = "#" onclick="document.getElementById('service').style.display = 'none';
+                         document.getElementById('labinfo').style.display = 'block'">Les labos</a></button></td>
+                         <!--Infos services à gérer (apparition/disparition)-->
+                    </tr>       
+                    <?php  
+               }
+               $reponse->closeCursor();
+               ?>
+          </div>
      </div>
      <?php
           mysqli_close($db_handle); 
