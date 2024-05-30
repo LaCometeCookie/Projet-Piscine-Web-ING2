@@ -52,6 +52,10 @@
                     <td>Adresse</td> 
                     <td><input type="text" name="adresse"></td>
                 </tr>
+                <tr>
+                    <td>Carte vitale</td> 
+                    <td><input type="number" name="vitale"></td>
+                </tr>
                 <tr> 
                     <!--Optgroup permet de choisir un item parmi ceux proposés, le même ID est utilisé ensuite dans le traitement des données-->
                     <td>Moyen de paiement</td> 

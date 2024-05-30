@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 30 mai 2024 à 09:33
+-- Généré le : jeu. 30 mai 2024 à 09:47
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -59,18 +59,19 @@ CREATE TABLE IF NOT EXISTS `client` (
   `Mail` varchar(255) NOT NULL,
   `mdp` varchar(255) NOT NULL,
   `Adresse` varchar(255) NOT NULL,
-  `Cvitale` int(15) NOT NULL,
+  `Cvitale` varchar(255) NOT NULL,
   `Paiement` varchar(255) NOT NULL,
   `ID_connexion` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client`
 --
 
 INSERT INTO `client` (`ID`, `Nom`, `Prenom`, `Mail`, `mdp`, `Adresse`, `Cvitale`, `Paiement`, `ID_connexion`) VALUES
-(2, 'Andriamanga', 'Johary', 'jandriamanga@hotmail.com', 'Andy*2004', '15 Rue Rosa Parks', 0, 'visa', 53311255);
+(2, 'Andriamanga', 'Johary', 'jandriamanga@hotmail.com', 'Andy*2004', '15 Rue Rosa Parks', '0', 'visa', 53311255),
+(5, 'Boutevin', 'Come', 'paris.michel@medicare.com', 'Come*2003', '14 rue sextius michel', '10306012145', 'visa', NULL);
 
 -- --------------------------------------------------------
 

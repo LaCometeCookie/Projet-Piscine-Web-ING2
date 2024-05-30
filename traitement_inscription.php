@@ -39,14 +39,15 @@ if(isset($_POST['mdp']))
         }
         else if ($compte == "client")
         {
-            $reponse = $bdd->prepare('INSERT INTO client(Nom, Prenom, Mail, mdp, Adresse, Paiement) 
-            VALUES (:Nom, :Prenom, :Mail, :mdp, :Adresse, :Paiement)'); // Permet de préparer la table à accueillir de nouvelles données (on y référence tous les attributs sauf l'ID qui est automatique)
+            $reponse = $bdd->prepare('INSERT INTO client(Nom, Prenom, Mail, mdp, Adresse, Cvitale, Paiement) 
+            VALUES (:Nom, :Prenom, :Mail, :mdp, :Adresse, :Cvitale, :Paiement)'); // Permet de préparer la table à accueillir de nouvelles données (on y référence tous les attributs sauf l'ID qui est automatique)
             $reponse->execute(array(
             'Nom' => $_POST['nom'],
             'Prenom' => $_POST['prenom'],
             'Mail' => $_POST['mail'],
             'mdp' => $_POST['mdp'],
             'Adresse' => $_POST['adresse'],
+            'Cvitale' => $_POST['vitale'],
             'Paiement' => $_POST['paiement'],
             )); //(Enfin, on ajoute toutes les valeurs non automatiques)
         }
