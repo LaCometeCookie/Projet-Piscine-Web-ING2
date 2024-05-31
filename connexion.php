@@ -16,35 +16,41 @@
 </head>  
 <body>
     <?php sleep(1);//Temps de pause pour l'action (petit plus réaliste)?>
-    <form method="post" action="index.php">
-        <table>
-        <tr> 
-            <!--Optgroup permet de choisir un item parmi ceux proposés, le même ID est utilisé ensuite dans le traitement des données-->
-            <td>Compte</td> 
-            <td><select name="compte" id="compte">
-                <optgroup label="compte">
-                    <option value="client" id='compte'>Client</option>
-                    <option value="medecin" id='compte'>Médecin</option>
-                    <option value="admin" id='compte'>Administrateur</option>
-                </optgroup>
-            </select></td>
-        </tr>
-        <tr>
-            <td>Mail</td> 
-            <td><input type="text" name="mail" required></td>
-        </tr>
-        <tr> 
-            <td>Mot de passe</td> 
-            <td><input type="password" name="mdp" required></td>
-        </tr>
-        <tr><td><input type="submit" value= "Se connecter" class="connecter"></td></tr>
-    </table>
-    </form>
-    <br><br>
-    <a href="mdp_o.php">Mot de passe oublié</a><br/>
-    <form action="inscription.php" method="post"><br>
-        <label for="compte">Pas encore de compte ?</label><br><br>
-        <input type="submit" value="S'inscrire" class="inscrit">
-    </form>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4">
+            <h2 class="text-center">Se connecter</h2>
+            <form method="post" action="index.php">
+                <div class="form-group">
+                    <label for="compte">Compte</label>
+                    <select name="compte" id="compte" class="form-control">
+                        <option value="client">Client</option>
+                        <option value="medecin">Médecin</option>
+                        <option value="admin">Administrateur</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mail">Mail</label>
+                    <input type="text" class="form-control" name="mail" required>
+                </div>
+                <div class="form-group">
+                    <label for="mdp">Mot de passe</label>
+                    <input type="password" class="form-control" name="mdp" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+            </form>
+            <br>
+            <div class="mt-3 text-center">
+                <a href="mdp_o.php">Mot de passe oublié</a>
+            </div>
+            <br>
+            <form action="inscription.php" method="post" class="mt-3">
+                <div class="text-center">
+                    <label for="compte">Pas encore de compte ?</label><br>
+                    <input type="submit" value="S'inscrire" class="btn btn-secondary">
+                </div>
+            </form>
+        </div>
+    </div>
+</form>
 </body>  
 </html> 
