@@ -1,8 +1,10 @@
+<!--Paiement d'un service (uniquement pour le client)-->
 <!DOCTYPE html> 
 <html> 
 <head> 
   <meta charset="utf-8">
   <title>Medicare | Paiement</title>
+  <link href="piaement.css" rel="stylesheet" type="text/css" />  
    <!-- Dernier CSS compilé et minifié --> 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
   
@@ -12,7 +14,71 @@
  <!-- Dernier JavaScript compilé --> 
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 </head>
-<body> 
+<body>
+    <?php
+     session_start();
+     sleep(1);//Temps de pause pour l'action (petit plus réaliste)
+     //identifier le nom de base de données 
+     $database = "pj web 2024"; 
+     //connectez-vous dans votre BDD 
+     //Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien) 
+     $db_handle = mysqli_connect('localhost', 'root', '' ); 
+     $db_found = mysqli_select_db($db_handle, $database);
+      if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) 
+      {
+           // L'utilisateur est connecté
+           $donnees['ID'] = $_SESSION['ID'];
+           $donnees['Nom'] = $_SESSION['Nom'];
+           $donnees['Prenom'] = $_SESSION['Prenom'];
+           $donnees['compte'] = $_SESSION['compte'];
+           $ok = TRUE;
+      } 
+      else 
+      {
+           // L'utilisateur n'est pas connecté
+           $ok = FALSE;
+      }
+	
+	if($ok)
+	{
+          
+        ?><!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
+        <button type="button" class="btn btn-link">
+            <a href = "index.php">Accueil</a></button> 
+        <button type="button" class="btn btn-link">
+            <a href = "parcourir.php">Parcourir</a>
+        </button>
+        <button type="button" class="btn btn-link">
+            <a href = "rdv.php">Rendez-vous</a>
+        </button>
+        <button type="button" class="btn btn-link">
+            <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
+        <button type="button" class="btn btn-info"> 
+            <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
+        </button> <?php
+    }
+    else
+    {
+        ?>
+    <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
+    <button type="button" class="btn btn-link">
+        <a href = "index.php">Accueil</a></button> 
+    <button type="button" class="btn btn-link">
+        <a href = "parcourir.php">Parcourir</a>
+    </button>
+    <button type="button" class="btn btn-link">
+        <a href = "rdv.php">Rendez-vous</a>
+    </button>
+    <button type="button" class="btn btn-link">
+        <a href = "connexion.php">Compte</a></button>
+    <button type="button" class="btn btn-info"> 
+        <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
+        <input type="text" name="compte" id="compte" value="<?php echo $compte;?>" hidden>
+    </button> 
+    <?php
+    }
+    mysqli_close($db_handle); 
+    ?> 
     <!--required permet de bloquer l'envoi si des champs ne sont pas remplis-->
     <form action="recu.php" method="post">
         <table>
