@@ -114,9 +114,10 @@
 			<th>Mail</th>
                <th>Telephone</th>
                <th>CV</th>
+               <th>Photo</th>
 		</tr>
           <?php //A bien agencer
-          $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins WHERE specialite = "generaliste" ORDER BY Nom');
+          $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV, photo FROM medecins WHERE specialite = "generaliste" ORDER BY Nom');
           while ($donnees = $reponse->fetch())
           {
           ?>
@@ -128,6 +129,7 @@
                     <td><?php  echo $donnees['Mail']; ?></td>
                     <td>+33<?php  echo $donnees['telephone']; ?></td>
                     <td><?php  echo $donnees['CV']; ?></td>
+                    <td><?php  echo $donnees['photo']; ?></td>
                     <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">
                     <a href = "rdv.php">Prendre un RDV</a></form></td>
                     <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">
@@ -140,7 +142,7 @@
           ?>
           </table>
      </div>
-     <div id = "medecinsp" style="display: none">><!--Liste des médecins spécialistes-->
+     <div id = "medecinsp" style="display: none"><!--Liste des médecins spécialistes-->
           <p>Les médecins spécialistes</p>
           <table class="centre">
 		<tr>
@@ -150,9 +152,10 @@
 			<th>Mail</th>
                <th>Telephone</th>
                <th>CV</th>
+               <th>Photo</th>
 		</tr>
           <?php //A bien agencer
-          $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins WHERE specialite != "generaliste" ORDER BY Nom');
+          $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV, photo FROM medecins WHERE specialite != "generaliste" ORDER BY Nom');
           while ($donnees = $reponse->fetch())
           {
           ?>
@@ -164,6 +167,7 @@
                     <td><?php  echo $donnees['Mail']; ?></td>
                     <td>+33<?php  echo $donnees['telephone']; ?></td>
                     <td><?php  echo $donnees['CV']; ?></td>
+                    <td><?php  echo $donnees['photo']; ?></td>
                     <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">
                     <a href = "rdv.php">Prendre un RDV</a></form></td>
                     <td><form method = "post" action = "rdv.php"><button type="button" class="btn btn-link">

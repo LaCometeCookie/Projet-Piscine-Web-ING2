@@ -47,8 +47,8 @@
             {
                 if(preg_match("#^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$#",$_POST['mdp']))//Vérifie si le mot de passe respecte les conditions indiquées (ici dans l'ordre, lettre, caractère spécial puis chiffre)
                 {
-                    $reponse = $bdd->prepare('INSERT INTO medecins(Nom, Prenom, specialite, Mail, mdp, telephone, CV)
-                    VALUES (:Nom, :Prenom, :specialite, :Mail, :mdp, :telephone, :CV)'); // Permet de préparer la table à accueillir de nouvelles données (on y référence tous les attributs sauf l'ID qui est automatique)
+                    $reponse = $bdd->prepare('INSERT INTO medecins(Nom, Prenom, specialite, Mail, mdp, telephone, CV, photo)
+                    VALUES (:Nom, :Prenom, :specialite, :Mail, :mdp, :telephone, :CV, :photo)'); // Permet de préparer la table à accueillir de nouvelles données (on y référence tous les attributs sauf l'ID qui est automatique)
                     $reponse->execute(array(
                     'Nom' => $_POST['nom'],
                     'Prenom' => $_POST['prenom'],
@@ -57,6 +57,7 @@
                     'mdp' => $_POST['mdp'],
                     'telephone' => $_POST['telephone'],
                     'CV' => $_POST['cv'],
+                    'photo' => $_POST['photo'],
                     )); //(Enfin, on ajoute toutes les valeurs non automatiques)
                     ?>
                     <h3>Un membre a été ajouté</h3>

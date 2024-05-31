@@ -97,6 +97,10 @@
                     <td>CV</td>
                     <td><input type="text" name="cv" required></td>
                 </tr>
+                <tr> 
+                    <td>Lien de la photo</td>
+                    <td><input type="text" name="photo" required></td>
+                </tr>
             </table>
                 <!--return window.confirm permet d'afficher un message avant de confirmer une action-->
                 <p>

@@ -156,9 +156,10 @@
                          <th>Mail</th>
                          <th>Telephone</th>
                          <th>CV</th>
+                         <th>Photo</th>
                     </tr>
                <?php //A mettre en XML
-               $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins ORDER BY Nom');
+               $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV, photo FROM medecins ORDER BY Nom');
                while ($donnees = $reponse->fetch())
                {
                ?>
@@ -170,6 +171,7 @@
                          <td><?php  echo $donnees['Mail']; ?></td>
                          <td>+33<?php  echo $donnees['telephone']; ?></td>
                          <td><?php  echo $donnees['CV']; ?></td>
+                         <td><?php  echo $donnees['photo']; ?></td>
                     </tr>
 
                <?php  
