@@ -1,3 +1,4 @@
+<!--Ajout/modification des infos des labos (uniquement pour l'admin)-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
           // L'utilisateur n'est pas connecté
           $ok = FALSE;
      }
-     if($ok)
+     if($ok)//Simple vérification pour éviter les erreurs
      {
         ?>
         <div class="parcours">
@@ -50,7 +51,7 @@
                     </optgroup>
                </select>
         </div>
-        <div id ="ajout" style="display: none">
+        <div id ="ajout" style="display: none"><!--Section ajout (bien cliquer sur la liste des choix pour confirmer la sélection (affiché par défaut)-->
             <h4> Veuillez renseigner les informations</h4>
             <form method="POST" action="new_labo.php">
                 <input type="text" name="choix" value = "ajout" hidden>
@@ -77,7 +78,7 @@
                 </tr>
                 <tr> 
                     <!--Optgroup permet de choisir un item parmi ceux proposés, le même ID est utilisé ensuite dans le traitement des données-->
-                    <td>Quels services attribuer (maximum 3) ?</td> 
+                    <td>Quels services attribuer (3 à choisir) ?</td> <!--3 choix à faire ici pour différencier les labos (pour éviter de surcharger le code de traitement associé)-->
                     <td>
                         <input type = "checkbox" name = "service[]" id = "service" value = "covid">
                         <label for="covid">COVID</label><br>

@@ -1,3 +1,6 @@
+<!--Prise de RDV (uniquement pour le client)
+ Forme d'un tableau en fonction des médecins et de ses disponibilités
+ Enregistre le RDV pris dans une base dédiée puis le fait rediriger vers le paiement si nécessaire (seulement certains servcices prédéfinis)-->
 <!DOCTYPE html>  
 <head>  
 <title>Medicare | RDV</title>  

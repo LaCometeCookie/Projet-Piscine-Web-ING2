@@ -1,3 +1,4 @@
+<!--Création d'un compte (uniquement client ou admin)-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 //identifier le nom de base de données 
 $database = "pj web 2024"; 
 //connectez-vous dans votre BDD 
-//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien) 
+//Rappel : votre serveur = localhost | votre login = root | votre mot de passe = '' (rien) 
 $db_handle = mysqli_connect('localhost', 'root', '' ); 
 $db_found = mysqli_select_db($db_handle, $database);
 $compte = isset($_POST["compte"])? $_POST["compte"] : "";
@@ -24,7 +25,7 @@ catch (Exception $e)
 }
 if(isset($_POST['mdp']))
 {
-    if(preg_match("#^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$#",$_POST['mdp']))//Vérifie si le mot de passe respecte les conditions indiquées (ici dans l'ordre, lettre, caractère spécial puis chiffre)
+    if(preg_match("#^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$#",$_POST['mdp']))//Vérifie si le mot de passe respecte les conditions indiquées (ici dans l'ordre : lettre, caractère spécial puis chiffre)
     {
         if ($compte == "admin") // Ajout d'un compte (les lignes utilisés ci-dessous sont extraits d'anciens codes réalisés en Terminale pour des projets similaires)
         {

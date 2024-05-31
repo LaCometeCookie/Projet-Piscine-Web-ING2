@@ -1,3 +1,4 @@
+<!--Création d'un compte (uniquement client ou admin)-->
 <!DOCTYPE html>
 <html>
 <head>

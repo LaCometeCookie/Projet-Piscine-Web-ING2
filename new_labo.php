@@ -1,3 +1,4 @@
+<!--Ajout/modification des infos des labos (uniquement pour l'admin)-->
 <!DOCTYPE html>
 <html>
 <head>

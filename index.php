@@ -39,6 +39,7 @@
     {
         die('Erreur : ' . $e->getMessage());
     }
+	//Tentative de connexion (soit visiteur, soit avec compte)
     if ($compte == "admin")
     {
 		if(isset($_POST['ID_connexion']))
@@ -188,7 +189,7 @@
 		// L'utilisateur n'est pas connecté
 		$ok = FALSE;
 	}
-	if($ok)
+	if($ok)//Si utilisateur connecté
 	{
           
 		?><!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
@@ -200,6 +201,7 @@
 		<button type="button" class="btn btn-link">
 				<a href = "rdv.php">Rendez-vous</a>
 		</button>
+		<!--htmlspecialchars permet d'afficher une valeur associé à une ligne dans la base de données (par exemple ici pour le nom et le prénom de l'utilisateur-->
 		<button type="button" class="btn btn-link">
 				<a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
 		<button type="button" class="btn btn-info"> 
@@ -207,7 +209,7 @@
 		</button> 
 		<?php 
 	}
-	else if (!($tentative))
+	else if (!($tentative))//Visiteur sans tentaive de connexion
 	{
 		?>
 	<!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
@@ -226,7 +228,7 @@
 	</button> 
 	<?php
 	}
-	else if($tentative)
+	else if($tentative)//Utilisateur avec infos entrées fausses
 	{
 		?>
 		<h4>Identifiant ou mot de passe incorrect</h4>

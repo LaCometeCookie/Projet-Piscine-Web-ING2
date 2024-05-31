@@ -1,3 +1,5 @@
+<!--Recherche de médecins/personnels et labos
+ Raccourci de chaque fenêtre avec redirection automatique en fonction de la recherche-->
 <!DOCTYPE html>  
 <head>  
 <title>Medicare | Recherche</title>  

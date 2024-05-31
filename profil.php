@@ -1,7 +1,8 @@
-<!--Page d'accueil du site
+<!--Page profil du site
  Contient les boutons de navigations (comme le reste des fenêtres sauf pour la connexion et le paiement pour le moment)
- Affiche l'actualité en menu défilant (voir Boostrap)
- En bas de page, copyright/infos importantes type adresse (comme le reste des fenêtres sauf pour la connexion et le paiement pour le moment)-->
+ Affiche les informations personnelles
+ Pour l'admin -> Le personnel + labos avec possibilité d'ajouter/supprimer(modifier pour labos)
+ Pour médecins et clients -> liste des RDV (avec possibilité d'en prendre pour le client)-->
  <!DOCTYPE html>  
 <head>  
 <title>Medicare | Accueil</title>  
@@ -82,22 +83,22 @@
                <div id = "infos" style="display: none">
                     <p>Les infos personnelles</p>
                     <?php 
-                    $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins WHERE ID = :ID AND Nom = :Nom');
-                    while ($donnees = $reponse->fetch())
-                    {
+                    $reponse = $bdd->query('SELECT Nom, Prenom, specialite, Mail, telephone, CV FROM medecins WHERE ID = '.(int)$_SESSION['ID'].'');
+                    $donnees = $reponse->fetch();
+                    
                     ?>
                     
                          <tr>
-                              <td><?php  echo $donnees['Nom']; ?></td>
-                              <td><?php  echo $donnees['Prenom']; ?></td>
-                              <td><?php  echo $donnees['specialite']; ?></td>
-                              <td><?php  echo $donnees['Mail']; ?></td>
-                              <td>+33<?php  echo $donnees['telephone']; ?></td>
-                              <td><?php  echo $donnees['CV']; ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Nom']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Prenom']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['specialite']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Mail']); ?></td>
+                              <td>+33<?php  echo htmlspecialchars($donnees['telephone']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['CV']); ?></td>
                          </tr>
 
                     <?php  
-                    }
+                    
                     $reponse->closeCursor();
                     ?>
                </div>
@@ -128,6 +129,22 @@
                </div>
                <div id = "infos" style="display: none">
                     <p>Les infos personnelles</p>
+                    <?php 
+                    $reponse = $bdd->query('SELECT Nom, Prenom, Mail FROM administrateur WHERE ID = '.(int)$_SESSION['ID'].'');
+                    $donnees = $reponse->fetch()
+                    
+                    ?>
+                    
+                         <tr>
+                              <td><?php  echo htmlspecialchars($donnees['Nom']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Prenom']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Mail']); ?></td>
+                         </tr>
+
+                    <?php  
+                    
+                    $reponse->closeCursor();
+                    ?>
                </div>
                <div id = "medecin_plus" style="display: none">
                <p>Liste du personnel</p>
@@ -214,7 +231,24 @@
                </select>
                </div>
                <div id = "infos" style="display: none">
-                    <p>Les infos personnelles</p>
+               <p>Les infos personnelles</p>
+                    <?php 
+                    $reponse = $bdd->query('SELECT Nom, Prenom, Mail, Adresse FROM client WHERE ID = '.(int)$_SESSION['ID'].'');
+                    $donnees = $reponse->fetch();
+                    
+                    ?>
+                    
+                         <tr>
+                              <td><?php  echo htmlspecialchars($donnees['Nom']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Prenom']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Mail']); ?></td>
+                              <td><?php  echo htmlspecialchars($donnees['Adresse']); ?></td>
+                         </tr>
+
+                    <?php  
+                    
+                    $reponse->closeCursor();
+                    ?>
                </div>
                <div id = "rdv" style="display: none">
                     <p>Mes RDV</p>

@@ -1,3 +1,4 @@
+<!--Ajout/modification du personnel (uniquement pour l'admin)-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +98,7 @@
                     <td><input type="text" name="cv" required></td>
                 </tr>
             </table>
-                <!--onclick permet d'afficher un message avant de confirmer une action-->
+                <!--return window.confirm permet d'afficher un message avant de confirmer une action-->
                 <p>
                     <input type="submit" value="Enregistrer et ajouter" class="inscrit" onclick="return window.confirm('Voulez-vous continuer ?')">
                     <input type="reset" value="Réinitialiser" class="zero" onclick="return window.confirm('Êtes-vous sûr ?')">

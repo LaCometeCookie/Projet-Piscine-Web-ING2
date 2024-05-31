@@ -1,3 +1,5 @@
+<!--Connexion à son compte
+ Pour éviter de multiplier les conditions de connexion, le choix a été fait d'utiliser le mail et le mot de passe de chaque utilisateur, peu importe leur statut-->
 <!DOCTYPE html>  
 <head>  
 <title>Medicare | Connexion</title>  

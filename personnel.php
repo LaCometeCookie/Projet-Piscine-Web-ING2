@@ -1,3 +1,4 @@
+<!--Ajout/modification du personnel (uniquement pour l'admin)-->
 <!DOCTYPE html>
 <html>
 <head>

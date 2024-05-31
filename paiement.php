@@ -1,3 +1,4 @@
+<!--Paiement d'un service (uniquement pour le client)-->
 <!DOCTYPE html> 
 <html> 
 <head> 

@@ -1,7 +1,7 @@
 <!-- Fenêtre qui affiche en fonction du choix de l'utilisateur : 
  1. Un menu pour effectuer son choix (par défaut)
  2. La liste des médecins avec sélection possible
- 3. La liste des services avec sélection possible
+ 3. La liste des services avec sélection possible (depuis les laboratoires)
  4. La liste des laboratoires avec sélection possible-->
 <!DOCTYPE html>  
 <head>  
@@ -88,7 +88,7 @@
      <?php
      }
      ?>
-     <!--Objectif recherché : garder la fenêtre en focntion du choix de l'utilisateur-->
+     <!--Objectif recherché : garder la fenêtre en focntion du choix de l'utilisateur (utilisation de style.display pour gérer les blocs devant apparaitre ou non)-->
      <div class="parcours">
           <select name="choix" id="choix">
                <optgroup label="choix">
@@ -104,7 +104,7 @@
                </optgroup>
           </select>
      </div>
-     <div id = "medecinsg" style="display: none">
+     <div id = "medecinsg" style="display: none"><!--Liste des médecins généralistes-->
      <p>Les médecins généralistes</p>
 		<table class="centre">
 		<tr>
@@ -140,7 +140,7 @@
           ?>
           </table>
      </div>
-     <div id = "medecinsp" style="display: none">
+     <div id = "medecinsp" style="display: none">><!--Liste des médecins spécialistes-->
           <p>Les médecins spécialistes</p>
           <table class="centre">
 		<tr>
@@ -176,7 +176,7 @@
           ?>
           </table>
      </div>
-     <div id = "labos" style="display: none">
+     <div id = "labos" style="display: none"><!--Affichage des informations du laboratoire puis de ses services en fonction du labo choisi-->
           <div id = "labinfo" style="display: block">
                <p>Les labos</p>
                <table>
@@ -188,7 +188,7 @@
                          <th>Telephone</th>
                     </tr>
                <?php //A bien agencer
-               $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail FROM labos ORDER BY Nom');
+               $reponse = $bdd->query('SELECT ID, Nom, Adresse, Salle, telephone, Mail FROM labos ORDER BY Nom');
                while ($donnees = $reponse->fetch())
                {
                ?>
@@ -199,9 +199,10 @@
                          <td><?php  echo $donnees['Salle']; ?></td>
                          <td><?php  echo $donnees['Mail']; ?></td>
                          <td>+33<?php  echo $donnees['telephone']; ?></td>
-                         <td><button type="button" class="btn btn-link">
+                         <td><form method = "post" action = "#"><button type="button" class="btn btn-link">
                          <a href = "#" onclick="document.getElementById('service').style.display = 'block';
-                         document.getElementById('labinfo').style.display = 'none'">Les services</a></button></td>
+                         document.getElementById('labinfo').style.display = 'none'"><input type = "text" name = "ID" value = "<?php  echo $donnees['ID']; ?>" hidden>Les services</a>
+                         </button></form></td>
                          <!--Infos services à gérer (apparition/disparition)-->
                     </tr>
                     
@@ -215,24 +216,22 @@
           <p>Les labos</p>
                <table>
                <?php //A bien agencer
-               $reponse = $bdd->query('SELECT Service1, Service2, Service3 FROM labos WHERE Nom = :Nom');
-               $reponse->execute(array(
-                    'Nom' => $_POST[$donnees['Nom']],
-               ));
-               while ($donnees = $reponse->fetch())
-               {
+               $ID = (int)$_POST['ID'];
+               $reponse = $bdd->query("SELECT Service1, Service2, Service3 FROM labos WHERE ID = $ID");
+               
+               $donnees = $reponse->fetch();
                ?>
                     <tr>
-                         <td><?php  echo $donnees['Service1']; ?></td>
-                         <td><?php  echo $donnees['Service2']; ?></td>
-                         <td><?php  echo $donnees['Service3']; ?></td>
+                         <td><?php  echo htmlspecialchars($donnees['Service1']); ?></td>
+                         <td><?php  echo htmlspecialchars($donnees['Service2']); ?></td>
+                         <td><?php  echo htmlspecialchars($donnees['Service3']); ?></td>
                          <td><button type="button" class="btn btn-link">
                          <a href = "#" onclick="document.getElementById('service').style.display = 'none';
                          document.getElementById('labinfo').style.display = 'block'">Les labos</a></button></td>
                          <!--Infos services à gérer (apparition/disparition)-->
                     </tr>       
                     <?php  
-               }
+               
                $reponse->closeCursor();
                ?>
           </div>
