@@ -3,7 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 31 mai 2024 à 12:29
+
+-- Généré le : lun. 27 mai 2024 à 12:44
+
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -26,7 +28,6 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `administrateur`
 --
-
 DROP TABLE IF EXISTS `administrateur`;
 CREATE TABLE IF NOT EXISTS `administrateur` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
@@ -41,9 +42,12 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 --
 -- Déchargement des données de la table `administrateur`
 --
-
 INSERT INTO `administrateur` (`ID`, `Nom`, `Prenom`, `Mail`, `mdp`, `ID_connexion`) VALUES
 (2, 'Andriamanga', 'Andy', 'andriamanga.andy@gmail.com', 'Andy*2004', 400653933);
+-- INSERT INTO `administrateur` (`ID`, `Nom`, `Prenom`, `Mail`, `mdp`, `ID_connexion`) VALUES
+-- (2, 'Boutevin', 'Come', 'come.boutevin@gmail.com', 'Mdp1234', 400653933);
+
+
 
 -- --------------------------------------------------------
 
@@ -99,6 +103,7 @@ CREATE TABLE IF NOT EXISTS `labos` (
 INSERT INTO `labos` (`ID`, `Nom`, `Adresse`, `Salle`, `telephone`, `Mail`, `Service1`, `Service2`, `Service3`) VALUES
 (1, 'Paris', '14 rue sextius michel', 'EM226', 146532584, 'paris.michel@medicare.com', 'covid', 'biologie_femme', 'gynecologie'),
 (2, 'Pollux', '35 Quai de Grenelle', 'P103', 146538463, 'paris.pollux@medicare.com', 'biologie_prev', 'biologie_femme', 'cencerologie');
+
 
 -- --------------------------------------------------------
 
