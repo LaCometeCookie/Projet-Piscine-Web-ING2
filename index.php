@@ -28,7 +28,7 @@
           margin-right: 10px;
           margin-top: 40px;
      }
-     .nav-item-parcourir a {
+     .nav-item-accueil a {
           color: blue !important;
      }
     </style>
