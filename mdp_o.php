@@ -42,6 +42,7 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
             </form>
+            <br>
             <form action="index.php" method="post" class="mt-3">
                 <div class="text-center">
                     <input type="submit" value="Retour à l'accueil" class="btn btn-secondary">

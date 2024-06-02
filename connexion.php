@@ -46,7 +46,14 @@
             <form action="inscription.php" method="post" class="mt-3">
                 <div class="text-center">
                     <label for="compte">Pas encore de compte ?</label><br>
-                    <input type="submit" value="S'inscrire" class="btn btn-secondary">
+                    <input type="submit" value="S'inscrire" class="btn btn-success">
+                </div>
+            </form>
+            <br>
+            <br>
+            <form action="index.php" method="post" class="mt-3">
+                <div class="text-center">
+                    <input type="submit" value="Retour à l'accueil" class="btn btn-secondary">
                 </div>
             </form>
         </div>
