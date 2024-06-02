@@ -12,10 +12,8 @@
 
 All HTML files are now included in their complementary PHP files
 
-Reste à faire : 
-- Gestion des RDV (paiement inclus quand nécesaire)
-- Design CSS
-- Ajout de trucs réalistes
-- Gestion des dispos Admin -> médecins et labos (+modifs infos)
-- BDD Services (ou autre moyen) pour texte et règles
-- Affichage des services en fonction du labo choisi (une istoire de requête à corriger)
+Sources utilisées dans les codes : 
+TD et corrections de TP de M.Hina
+https://getbootstrap.com/
+Communication entre les pages PHP par PHP SESSION
+Exemple - Architecture du système
