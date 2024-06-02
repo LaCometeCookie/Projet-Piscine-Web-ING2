@@ -46,15 +46,6 @@
 	//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien) 
 	$db_handle = mysqli_connect('localhost', 'root', '' ); 
 	$db_found = mysqli_select_db($db_handle, $database);
-     $from = isset($_POST["from"])? $_POST["from"] : "";
-     try // Test de connexion à la base de données (retorune une erreur en cas d'échec)
-     {
-          $bdd=new PDO('mysql:host=localhost;dbname=pj web 2024;charset=utf8', 'root', ''); //On y référence le nom d'utilisateur et le mot de passe, la base à utiliser et l'encodage
-     }
-     catch (Exception $e)
-     {
-          die('Erreur : ' . $e->getMessage()); // En cas d'erreur de connexion, un message est affiché
-     }
      if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) 
      {
           // L'utilisateur est connecté
@@ -69,7 +60,9 @@
           // L'utilisateur n'est pas connecté
           $ok = FALSE;
      }
-	
+  
+  
+  
 	mysqli_close($db_handle);
     ?>
 
@@ -96,6 +89,46 @@
             </div>
         </div>
     </nav>
+
+  
+	if($ok)
+	{
+          
+  	?><!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
+       <button type="button" class="btn btn-link">
+            <a href = "index.php">Accueil</a></button> 
+       <button type="button" class="btn btn-link">
+            <a href = "parcourir.php">Parcourir</a>
+       </button>
+       <button type="button" class="btn btn-link">
+            <a href = "rdv.php">Rendez-vous</a>
+       </button>
+       <button type="button" class="btn btn-link">
+            <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
+       <button type="button" class="btn btn-info"> 
+            <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
+       </button><?php
+	}
+     else
+     {
+          ?>
+     <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
+     <button type="button" class="btn btn-link">
+          <a href = "index.php">Accueil</a></button> 
+     <button type="button" class="btn btn-link">
+          <a href = "parcourir.php">Parcourir</a>
+     </button>
+     <button type="button" class="btn btn-link">
+          <a href = "rdv.php">Rendez-vous</a>
+     </button>
+     <button type="button" class="btn btn-link">
+          <a href = "connexion.php">Compte</a></button>
+     <button type="button" class="btn btn-info"> 
+          <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
+     </button> 
+     <?php
+     }?>
+  
      <!--Section RDV-->
      <h2>Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
      <select name="choix" id="choix">
@@ -198,10 +231,20 @@
           }
           ?>
      </div>
+  
+  
          <!-- Footer -->
     <footer class="text-center mt-4">
         <p>&copy; 2024 Medicare. Tous droits réservés.</p>
         <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
     </footer> 
+        
+        <!-- Fermeture de la communication serveur -->
+     <?php
+     mysqli_close($db_handle); 
+     ?> 
+</body>
+     mysqli_close($db_handle); 
+     ?> 
 </body>  
 </html> 
