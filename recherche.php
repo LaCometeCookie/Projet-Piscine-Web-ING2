@@ -36,6 +36,10 @@
      .nav-item-recherche a {
           color: blue !important;
      }
+     h2 {
+          display: flex;
+          justify-content: center;
+     }
 </style>
   
 </head>  
@@ -93,15 +97,20 @@
         </div>
     </nav> 
 
-     <form method="post" action="rechercher.php">
-     <table>
-        <tr>
-            <td>Votre recherche</td> 
-            <td><input type="text" name="recherche"></td>
-            <td><input type="submit" name= "rechercher" value="rechercher"></td>
-        </tr>
-     </table>
+    <div class="container">
+    <h2>Formulaire de Recherche</h2>
+    <form method="post" action="rechercher.php">
+        <div class="form-group row">
+            <label for="recherche" class="col-sm-2 col-form-label">Votre recherche</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="recherche" name="recherche">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </div>
     </form>
+    </div>
         <!-- Footer -->
         <footer class="text-center mt-4">
         <p>&copy; 2024 Medicare. Tous droits réservés.</p>
