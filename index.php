@@ -184,7 +184,9 @@
 
     <!-- Actualités -->
       <div class="container text-center">
+          <br>
           <h2>Actualités</h2>
+          <br>
           <div class="row">
               <div class="col-md-6">
                   <h3>Nouveau variant du Coronavirus</h3>
