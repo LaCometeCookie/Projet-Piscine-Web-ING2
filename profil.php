@@ -107,9 +107,6 @@
             </div>
         </div>
     </nav>
-    <form class="text-center" method="post" action="logout.php">
-        <button type="submit" class="btn btn-link" onclick="return confirm('Êtes-vous sûr ?')">Se déconnecter</button>
-    </form>
     
 
     <div class="container">
@@ -161,14 +158,19 @@
         elseif ($ok && $donnees['compte'] == "admin")
         { ?>
         <div class="form-group">
-            <label for="choix" class="h4">Choix</label>
-            <select name="choix" id="choix" class="form-control large-text">
-                <optgroup label="Choix">
-                    <option value="infos">Infos personnelles</option>
-                    <option value="medecin_plus">Gérer le personnel</option>
-                    <option value="labos">Laboratoires</option>
-                </optgroup>
-            </select>
+            <select name="choix" id="choix">
+                    <optgroup label="choix">
+                    <option value="infos" id='choix' onclick ="document.getElementById('infos').style.display = 'block' ;
+                    document.getElementById('medecin_plus').style.display = 'none';
+                    document.getElementById('labos').style.display = 'none' ;">Infos personnelles</option>
+                    <option value="medecin_plus" id='choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('medecin_plus').style.display = 'block' ;
+                    document.getElementById('labos').style.display = 'none' ;">Gérer le personnel</option>
+                    <option value = "labos" id = 'choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('medecin_plus').style.display = 'none' ;
+                    document.getElementById('labos').style.display = 'block' ;">Laboratoires</option>
+                    </optgroup>
+               </select>
         </div>
 
         <div id="infos" class="section" style="display: none;">
@@ -221,6 +223,8 @@
                     ?>
                 </tbody>
             </table>
+            <p><form method = "post" action = "medecins.php"><input type = "submit" value="Gérer le personnel"></form></p>
+
         </div>
 
         <div id="labos" class="section" style="display: none;">
@@ -236,21 +240,27 @@
                 </thead>
                 <tbody>
                     <?php 
-                    $reponse = $bdd->query('SELECT Nom, Adresse, Mail, telephone FROM laboratoire ORDER BY Nom');
-                    while ($donnees = $reponse->fetch()) {
+                    $reponse = $bdd->query('SELECT Nom, Adresse, Salle, telephone, Mail, Service1, Service2, Service3 FROM labos ORDER BY Nom');
+                    while ($donnees = $reponse->fetch())
+                    {
                     ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($donnees['Nom']); ?></td>
-                        <td><?php echo htmlspecialchars($donnees['Adresse']); ?></td>
-                        <td><?php echo htmlspecialchars($donnees['Mail']); ?></td>
-                        <td>+33<?php echo htmlspecialchars($donnees['telephone']); ?></td>
-                    </tr>
-                    <?php 
+                         <tr>
+                              <td><?php  echo $donnees['Nom']; ?></td>
+                              <td><?php  echo $donnees['Adresse']; ?></td>
+                              <td><?php  echo $donnees['Salle']; ?></td>
+                              <td><?php  echo $donnees['Mail']; ?></td>
+                              <td>+33<?php  echo $donnees['telephone']; ?></td>
+                              <td><?php  echo $donnees['Service1']; ?></td>
+                              <td><?php  echo $donnees['Service2']; ?></td>
+                              <td><?php  echo $donnees['Service3']; ?></td>
+                         </tr>
+                    <?php  
                     }
                     $reponse->closeCursor();
                     ?>
                 </tbody>
             </table>
+            <p><form method = "post" action = "labos.php"><input type = "submit" value="Gérer les labos"></form></p>
         </div>
 
         <form method="post" action="logout.php">
@@ -263,18 +273,20 @@
         { ?>
         <div class="form-group">
             <label for="choix" class="h4">Choix</label>
-            <select name="choix" id="choix" class="form-control large-text">
-                <optgroup label="Choix">
-                    <option value="infos">Infos personnelles</option>
-                    <option value="rdv">Mes rendez-vous</option>
-                </optgroup>
-            </select>
+            <select name="choix" id="choix">
+                    <optgroup label="choix">
+                    <option value="infos" id='choix' onclick ="document.getElementById('infos').style.display = 'block' ;
+                    document.getElementById('rdv').style.display = 'none';">Infos personnelles</option>
+                    <option value="rdv" id='choix' onclick ="document.getElementById('infos').style.display = 'none' ;
+                    document.getElementById('rdv').style.display = 'block' ;">Mes RDV</option>
+                    </optgroup>
+               </select>
         </div>
 
         <div id="infos" class="section" style="display: none;">
             <p class="h3">Les infos personnelles</p>
             <?php 
-            $reponse = $bdd->query('SELECT Nom, Prenom, Mail, telephone FROM client WHERE ID = '.(int)$_SESSION['ID'].'');
+            $reponse = $bdd->query('SELECT Nom, Prenom, Mail, Adresse FROM client WHERE ID = '.(int)$_SESSION['ID'].'');
             $donnees = $reponse->fetch();
             ?>
             <table class="table table-striped larger-text">
@@ -282,7 +294,7 @@
                     <td><?php echo htmlspecialchars($donnees['Nom']); ?></td>
                     <td><?php echo htmlspecialchars($donnees['Prenom']); ?></td>
                     <td><?php echo htmlspecialchars($donnees['Mail']); ?></td>
-                    <td>+33<?php echo htmlspecialchars($donnees['telephone']); ?></td>
+                    <td>+33<?php echo htmlspecialchars($donnees['Adresse']); ?></td>
                 </tr>
             </table>
             <?php $reponse->closeCursor(); ?>
