@@ -199,31 +199,32 @@
             <div class="carousel-inner">
 
                 <div class="item active">
-                    <img src="images/paris.jpeg" alt="Paris" style="width:100%; height: 800px;">
+
+                    <img src="Images/Caroussel1.jpg" alt="Paris" style="width:100%; height: 800px;">
                     <div class="carousel-caption">
                         <h3>Paris</h3>
                         <p>La ville lumière!</p>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="images/berlin.jpg" alt="Berlin" style="width:100%; height: 800px;">
+                    <img src="Images/Caroussel2.jpeg" alt="Berlin" style="width:100%; height: 800px;">
                     <div class="carousel-caption">
                         <h3>Berlin</h3>
                         <p>Tu te perds en vélo</p>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="images/prague.jpg" alt="Prague" style="width:100%; height: 800px;">
+                    <img src="images/Caroussel3.jpg" alt="Prague" style="width:100%; height: 800px;">
                     <div class="carousel-caption">
                         <h3>Prague</h3>
                         <p>Tchéquie</p>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="images/rome.jpg" alt="Rome" style="width:100%; height: 800px;">
+                    <img src="images/Caroussel4.jpg" alt="Rome" style="width:100%; height: 800px;">
                     <div class="carousel-caption">
                         <h3>Rome</h3>
-                        <p>On ne coupe pas les en deux</p>
+                        <p>On ne coupe pas</p>
                     </div>
                 </div>
 
@@ -264,7 +265,7 @@
                   </p>
               </div>
               <div class="col-md-6">
-                  <img src="Blog1.jpeg" class="img-responsive center-block" alt="Image 1">
+                  <img src="Images/Blog1.jpeg" class="img-responsive center-block" alt="Image 1">
               </div>
           </div>
           <br>
@@ -279,7 +280,7 @@
                   </p>
               </div>
               <div class="col-md-6">
-                  <img src="Blog2.jpg" class="img-responsive center-block" alt="Image 2">
+                  <img src="Images/Blog2.jpg" class="img-responsive center-block" alt="Image 2">
               </div>
           </div>
 
