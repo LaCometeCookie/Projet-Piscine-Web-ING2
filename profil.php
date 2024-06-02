@@ -286,7 +286,7 @@
         <div id="infos" class="section" style="display: none;">
             <p class="h3">Les infos personnelles</p>
             <?php 
-            $reponse = $bdd->query('SELECT Nom, Prenom, Mail, telephone FROM client WHERE ID = '.(int)$_SESSION['ID'].'');
+            $reponse = $bdd->query('SELECT Nom, Prenom, Mail, Adresse FROM client WHERE ID = '.(int)$_SESSION['ID'].'');
             $donnees = $reponse->fetch();
             ?>
             <table class="table table-striped larger-text">
@@ -294,7 +294,7 @@
                     <td><?php echo htmlspecialchars($donnees['Nom']); ?></td>
                     <td><?php echo htmlspecialchars($donnees['Prenom']); ?></td>
                     <td><?php echo htmlspecialchars($donnees['Mail']); ?></td>
-                    <td>+33<?php echo htmlspecialchars($donnees['telephone']); ?></td>
+                    <td>+33<?php echo htmlspecialchars($donnees['Adresse']); ?></td>
                 </tr>
             </table>
             <?php $reponse->closeCursor(); ?>
