@@ -137,7 +137,20 @@ if ($db_found) {
                     <td><?php echo htmlspecialchars($medecin['Nom']); ?></td>
                     <td><?php echo htmlspecialchars($medecin['Prenom']); ?></td>
                     <td><?php echo htmlspecialchars($medecin['specialite']); ?></td>
-                    <td><a href="prendre_rdv.php?type=medecin&id=<?php echo $medecin['ID']; ?>" class="btn btn-primary">Prendre rendez-vous</a></td>
+                    <td>
+                        <a href="#" class="btn btn-primary" onclick="showAppointmentForm('<?php echo $medecin['ID']; ?>', 'medecin')">Prendre rendez-vous</a>
+                        <div id="medecin_<?php echo $medecin['ID']; ?>_form" style="display: none;">
+                            <select class="form-control" name="heure" id="heure_<?php echo $medecin['ID']; ?>">
+                                <option value="">Sélectionnez une heure</option>
+                                <!-- Remplissez les heures dynamiquement ici -->
+                            </select>
+                            <select class="form-control" name="date" id="date_<?php echo $medecin['ID']; ?>">
+                                <option value="">Sélectionnez une date</option>
+                                <!-- Remplissez les dates dynamiquement ici -->
+                            </select>
+                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $medecin['ID']; ?>')">Valider mon RDV</button>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
@@ -157,22 +170,54 @@ if ($db_found) {
             <?php foreach ($labos as $labo): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($labo['Nom']); ?></td>
-                    <td><a href="prendre_rdv.php?type=labo&id=<?php echo $labo['ID']; ?>" class="btn btn-primary">Prendre rendez-vous</a></td>
+                    <td>
+                        <a href="#" class="btn btn-primary" onclick="showAppointmentForm('<?php echo $labo['ID']; ?>', 'labo')">Prendre rendez-vous</a>
+                        <div id="labo_<?php echo $labo['ID']; ?>_form" style="display: none;">
+                            <select class="form-control" name="heure" id="heure_<?php echo $labo['ID']; ?>">
+                                <option value="">Sélectionnez une heure</option>
+                                <!-- Remplissez les heures dynamiquement ici -->
+                            </select>
+                            <select class="form-control" name="date" id="date_<?php echo $labo['ID']; ?>">
+                                <option value="">Sélectionnez une date</option>
+                                <!-- Remplissez les dates dynamiquement ici -->
+                            </select>
+                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $labo['ID']; ?>')">Valider mon RDV</button>
+                        </div>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
-
 <script>
     function toggleSections() {
         var choix = document.getElementById('choix').value;
         document.getElementById('medecin').style.display = (choix === 'medecin') ? 'block' : 'none';
         document.getElementById('labo').style.display = (choix === 'labo') ? 'block' : 'none';
     }
-</script>
 
+    function showAppointmentForm(id, type) {
+        var formId = type + '_' + id + '_form';
+        document.getElementById(formId).style.display = 'block';
+    }
+
+    function validateAppointment(id) {
+        var selectedDate = document.getElementById('date_' + id).value;
+        var selectedTime = document.getElementById('heure_' + id).value;
+        if (selectedDate === '' || selectedTime === '') {
+            alert('Veuillez sélectionner une date et une heure pour votre rendez-vous.');
+        } else {
+            // Envoyer le rendez-vous à la base de données ou effectuer d'autres actions nécessaires
+            alert('Rendez-vous confirmé pour le ' + selectedDate + ' à ' + selectedTime);
+            // Réinitialiser les sélections
+            document.getElementById('date_' + id).value = '';
+            document.getElementById('heure_' + id).value = '';
+            // Cacher le formulaire après la validation
+            document.getElementById(type + '_' + id + '_form').style.display = 'none';
+        }
+    }
+</script>
 <!-- Footer -->
 <br>
 <br>
@@ -181,7 +226,6 @@ if ($db_found) {
     <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
     <p>Mail: medicare@ece.fr</p>
 </footer>
-
 <?php
 mysqli_close($db_handle);
 ?>
