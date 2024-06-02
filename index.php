@@ -185,7 +185,7 @@
 
     <!-- Caroussel -->
     <div class="container text-center">
-        <!-- <h2>Nos medecins</h2> -->
+        <h2>Medicare : un service professionnel !</h2>
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -248,7 +248,8 @@
     <!-- Actualités -->
       <div class="container text-center">
           <br>
-          <h2>Actualités</h2>
+          <br>
+          <h1>Dernières Actualités</h1>
           <br>
           <div class="row">
               <div class="col-md-6">
