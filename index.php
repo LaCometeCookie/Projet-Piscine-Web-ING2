@@ -182,15 +182,13 @@
           </div>
      </nav>
 
-    <!-- Actualités -->
       <div class="container text-center">
-          <br>
+          <!-- Actualités -->
           <h2>Actualités</h2>
-          <br>
           <div class="row">
               <div class="col-md-6">
-                  <h3>Nouveau variant du Coronavirus</h3>
-                  <p style="text-align: left;">En ce 25 Mai 2054, un enième nouveau variant du Coronavirus a été découvert. Voici nos conseils pour vous protéger :
+                  <h3>Nouvelle variante du Coronavirus</h3>
+                  <p style="text-align: left;">En ce 25 Mai 2054, une enième nouveau variant du Coronavirus a été découvert. Voici nos conseils pour vous protéger :
                   <br>
                   <br>
                   Lavez-vous les mains régulièrement avec de l'eau.<br>
@@ -222,15 +220,13 @@
                   <img src="Blog2.jpg" class="img-responsive center-block" alt="Image 2">
               </div>
           </div>
-
-          <!-- En mettre autant que necessaire pour reculer le footer -->
-          <br>
       </div>
 
     <!-- Footer -->
     <footer class="text-center mt-4">
         <p>&copy; 2024 Medicare. Tous droits réservés.</p>
         <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
+        <p>Mail: medicare@ece.fr</p>
     </footer>
 </body>  
 </html>
