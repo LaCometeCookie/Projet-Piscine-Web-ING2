@@ -14,28 +14,34 @@
  
  <!-- Dernier JavaScript compilé --> 
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+ <!-- CSS --> 
  <style>
-        .navbar-nav {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        .navbar-nav > li {
-            float: none;
-        }
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-        }
-        .navbar-brand img {
-            max-height: 40px; /* A ajuster*/
-            margin-right: 10px;
-        }
-        .nav-item-accueil a {
-            color: blue !important;
-        }
-    </style>
+     .navbar-nav {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+     }
+     .navbar-nav > li {
+          float: none;
+     }
+     .navbar-brand {
+          display: flex;
+          align-items: center;
+     }
+     .navbar-brand img {
+          max-height: 80px; /* A ajuster*/
+          margin-right: 10px;
+          margin-top: 40px;
+     }
+     .nav-item-parcourir a {
+          color: blue !important;
+     }
+</style>
+
 </head>  
+
+
 <body>
 	<?php
      session_start();
@@ -60,8 +66,6 @@
           // L'utilisateur n'est pas connecté
           $ok = FALSE;
      }
-  
-  
   
 	mysqli_close($db_handle);
     ?>
@@ -244,7 +248,4 @@
      mysqli_close($db_handle); 
      ?> 
 </body>
-     mysqli_close($db_handle); 
-     ?> 
-</body>  
 </html> 

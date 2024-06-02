@@ -49,7 +49,7 @@
                     <input type="submit" value="S'inscrire" class="btn btn-secondary">
                 </div>
             </form>
-        </div> 
+        </div>
     </div>
-</body>  
+  </body>  
 </html> 

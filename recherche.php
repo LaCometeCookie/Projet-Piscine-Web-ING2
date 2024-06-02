@@ -5,36 +5,42 @@
 <title>Medicare | Recherche</title>  
 <meta charset="utf-8"/>  
 <link href="recherche.css" rel="stylesheet" type="text/css" />  
- <!-- Dernier CSS compilé et minifié --> 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
-  
- <!-- Bibliothèque jQuery --> 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> 
+<!-- Dernier CSS compilé et minifié --> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
  
- <!-- Dernier JavaScript compilé --> 
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
- <style>
-        .navbar-nav {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        .navbar-nav > li {
-            float: none;
-        }
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-        }
-        .navbar-brand img {
-            max-height: 40px; /* A ajuster*/
-            margin-right: 10px;
-        }
-        .nav-item-accueil a {
-            color: blue !important;
-        }
-    </style>
+<!-- Bibliothèque jQuery --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> 
+
+<!-- Dernier JavaScript compilé --> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+  
+<!-- CSS -->  
+<style>
+     .navbar-nav {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+     }
+     .navbar-nav > li {
+          float: none;
+     }
+     .navbar-brand {
+          display: flex;
+          align-items: center;
+     }
+     .navbar-brand img {
+          max-height: 80px; /* A ajuster*/
+          margin-right: 10px;
+          margin-top: 40px;
+     }
+     .nav-item-parcourir a {
+          color: blue !important;
+     }
+</style>
+  
 </head>  
+
+
 <body>
 	<?php
      session_start();
@@ -86,6 +92,7 @@
             </div>
         </div>
     </nav> 
+
      <form method="post" action="rechercher.php">
      <table>
         <tr>
