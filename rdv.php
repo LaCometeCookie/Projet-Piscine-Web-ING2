@@ -1,7 +1,7 @@
 <!--Prise de RDV (uniquement pour le client)
  Forme d'un tableau en fonction des médecins et de ses disponibilités
  Enregistre le RDV pris dans une base dédiée puis le fait rediriger vers le paiement si nécessaire (seulement certains servcices prédéfinis)-->
-<!DOCTYPE html>  
+ <!DOCTYPE html>  
 <head>  
 <title>Medicare | RDV</title>  
 <meta charset="utf-8"/>  
@@ -14,6 +14,27 @@
  
  <!-- Dernier JavaScript compilé --> 
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+ <style>
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .navbar-nav > li {
+            float: none;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            max-height: 40px; /* A ajuster*/
+            margin-right: 10px;
+        }
+        .nav-item-accueil a {
+            color: blue !important;
+        }
+    </style>
 </head>  
 <body>
 	<?php
@@ -39,7 +60,37 @@
           // L'utilisateur n'est pas connecté
           $ok = FALSE;
      }
-	
+  
+  
+  
+	mysqli_close($db_handle);
+    ?>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" alt="Logo"> Medicare
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
+                    <li><a href="parcourir.php">Parcourir</a></li>
+                    <li><a href="rdv.php">Rendez-vous</a></li>
+                    <?php if ($ok): ?>
+                        <li><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
+                    <?php else: ?>
+                        <li><a href="connexion.php">Compte</a></li>
+                    <?php endif; ?>
+                    <li><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  
 	if($ok)
 	{
           
@@ -77,6 +128,7 @@
      </button> 
      <?php
      }?>
+  
      <!--Section RDV-->
      <h2>Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
      <select name="choix" id="choix">
@@ -179,6 +231,15 @@
           }
           ?>
      </div>
+  
+  
+         <!-- Footer -->
+    <footer class="text-center mt-4">
+        <p>&copy; 2024 Medicare. Tous droits réservés.</p>
+        <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
+    </footer> 
+        
+        <!-- Fermeture de la communication serveur -->
      <?php
      mysqli_close($db_handle); 
      ?> 
