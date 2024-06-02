@@ -22,26 +22,27 @@
      });
  </script>
   <style>
-        .navbar-nav {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-        .navbar-nav > li {
-            float: none;
-        }
-        .navbar-brand {
-            display: flex;
-            align-items: center;
-        }
-        .navbar-brand img {
-            max-height: 40px; /* A ajuster*/
-            margin-right: 10px;
-        }
-        .nav-item-parcourir a {
-            color: blue !important;
-        }
-    </style> 
+     .navbar-nav {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+     }
+     .navbar-nav > li {
+          float: none;
+     }
+     .navbar-brand {
+          display: flex;
+          align-items: center;
+     }
+     .navbar-brand img {
+          max-height: 80px; /* A ajuster*/
+          margin-right: 10px;
+          margin-top: 40px;
+     }
+     .nav-item-parcourir a {
+          color: blue !important;
+     }
+</style>
 </head>  
 <body>
      <?php
@@ -80,27 +81,27 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <img src="logo.png" alt="Logo"> Medicare
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
-                    <li class="nav-item-parcourir"><a href="parcourir.php">Parcourir</a></li>
-                    <li><a href="rdv.php">Rendez-vous</a></li>
-                    <li><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
-					<?php if ($ok): ?>
-                        <li><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
-                    <?php else: ?>
-                        <li><a href="connexion.php">Compte</a></li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+          <div class="container-fluid">
+               <div class="navbar-header">
+                   <a class="navbar-brand" href="#">
+                       <img src="logo.png" alt="Logo"> Medicare
+                   </a>
+               </div>
+               <div class="collapse navbar-collapse">
+                   <ul class="nav navbar-nav">
+                       <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
+                       <li class="nav-item-parcourir"><a href="parcourir.php">Parcourir</a></li>
+                       <li class="nav-item-rdv"><a href="rdv.php">Rendez-vous</a></li>
+                       <li class="nav-item-recherche"><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
+                            <?php if ($ok): ?>
+                           <li class="nav-item-compte"><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
+                       <?php else: ?>
+                           <li><a href="connexion.php">Compte</a></li>
+                       <?php endif; ?>
+                   </ul>
+               </div>
+          </div>
+     </nav>
 
     <!--Objectif recherché : garder la fenêtre en fonction du choix de l'utilisateur (utilisation de style.display pour gérer les blocs devant apparaitre ou non)-->
     <div class="parcours container">

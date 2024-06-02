@@ -5,14 +5,36 @@
 <title>Medicare | Recherche</title>  
 <meta charset="utf-8"/>  
 <link href="recherche.css" rel="stylesheet" type="text/css" />  
- <!-- Dernier CSS compilé et minifié --> 
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
-  
- <!-- Bibliothèque jQuery --> 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> 
+<!-- Dernier CSS compilé et minifié --> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> 
  
- <!-- Dernier JavaScript compilé --> 
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+<!-- Bibliothèque jQuery --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> 
+
+<!-- Dernier JavaScript compilé --> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+<style>
+     .navbar-nav {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+     }
+     .navbar-nav > li {
+          float: none;
+     }
+     .navbar-brand {
+          display: flex;
+          align-items: center;
+     }
+     .navbar-brand img {
+          max-height: 80px; /* A ajuster*/
+          margin-right: 10px;
+          margin-top: 40px;
+     }
+     .nav-item-parcourir a {
+          color: blue !important;
+     }
+</style> 
 </head>  
 <body>
 	<?php
@@ -37,45 +59,34 @@
      {
           // L'utilisateur n'est pas connecté
           $ok = FALSE;
-     }
-	
-	if($ok)
-	{
-          
-  	?><!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
-       <button type="button" class="btn btn-link">
-            <a href = "index.php">Accueil</a></button> 
-       <button type="button" class="btn btn-link">
-            <a href = "parcourir.php">Parcourir</a>
-       </button>
-       <button type="button" class="btn btn-link">
-            <a href = "rdv.php">Rendez-vous</a>
-       </button>
-       <button type="button" class="btn btn-link">
-            <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
-       <button type="button" class="btn btn-info"> 
-            <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-       </button><?php
-	 }
-     else
-     {
-          ?>
-     <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
-     <button type="button" class="btn btn-link">
-          <a href = "index.php">Accueil</a></button> 
-     <button type="button" class="btn btn-link">
-          <a href = "parcourir.php">Parcourir</a>
-     </button>
-     <button type="button" class="btn btn-link">
-          <a href = "rdv.php">Rendez-vous</a>
-     </button>
-     <button type="button" class="btn btn-link">
-          <a href = "connexion.php">Compte</a></button>
-     <button type="button" class="btn btn-info"> 
-          <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>	   
-     </button> 
+     }   
+  	?>
+     
+     <!-- Navigation -->
+     <nav class="navbar navbar-default">
+       <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" alt="Logo"> Medicare
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
+                    <li class="nav-item-parcourir"><a href="parcourir.php">Parcourir</a></li>
+                    <li class="nav-item-rdv"><a href="rdv.php">Rendez-vous</a></li>
+                    <li class="nav-item-recherche"><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
+                         <?php if ($ok): ?>
+                    <li class="nav-item-compte"><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
+                    <?php else: ?>
+                        <li><a href="connexion.php">Compte</a></li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+       </div>
+  </nav>
      <?php
-     }
+
      mysqli_close($db_handle); 
      ?>
      <form method="post" action="rechercher.php">
