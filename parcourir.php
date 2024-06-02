@@ -262,6 +262,8 @@
   
   
      <!-- Footer -->
+     <br>
+     <br>
     <footer class="text-center mt-4">
         <p>&copy; 2024 Medicare. Tous droits réservés.</p>
         <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
