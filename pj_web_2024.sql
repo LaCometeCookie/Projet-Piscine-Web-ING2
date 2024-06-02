@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : ven. 31 mai 2024 à 12:29
+-- Généré le : Dim 02 juin 2024 à 21:29
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.3.21
 
@@ -43,8 +43,7 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 --
 
 INSERT INTO `administrateur` (`ID`, `Nom`, `Prenom`, `Mail`, `mdp`, `ID_connexion`) VALUES
-(2, 'Andriamanga', 'Andy', 'andriamanga.andy@gmail.com', 'Andy*2004', 400653933),
-(13, 'Boutevin', 'Côme', 'come.boutevin@gmail.com', 'Come*2003', 132567655);
+(2, 'Andriamanga', 'Andy', 'andriamanga.andy@gmail.com', 'Andy*2004', 956324594);
 
 -- --------------------------------------------------------
 
@@ -71,8 +70,7 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`ID`, `Nom`, `Prenom`, `Mail`, `mdp`, `Adresse`, `Cvitale`, `Paiement`, `ID_connexion`) VALUES
-(5, 'Lugagne', 'Justin', 'paris.michel@medicare.com', 'Justin*2003', '14 rue sextius michel', '10306012145', 'visa', 776488339),
-(89, 'Chose', 'Truc', 'chose.truc@medicare.com', 'Chose*Truc', '13 rue machin', '10234677148', 'visa', 776487835);
+(5, 'Boutevin', 'Come', 'paris.michel@medicare.com', 'Come*2003', '14 rue sextius michel', '10306012145', 'visa', 776488339);
 
 -- --------------------------------------------------------
 
@@ -92,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `labos` (
   `Service2` varchar(255) NOT NULL,
   `Service3` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `labos`
@@ -100,7 +98,9 @@ CREATE TABLE IF NOT EXISTS `labos` (
 
 INSERT INTO `labos` (`ID`, `Nom`, `Adresse`, `Salle`, `telephone`, `Mail`, `Service1`, `Service2`, `Service3`) VALUES
 (1, 'Paris', '14 rue sextius michel', 'EM226', 146532584, 'paris.michel@medicare.com', 'covid', 'biologie_femme', 'gynecologie'),
-(2, 'Pollux', '35 Quai de Grenelle', 'P103', 146538463, 'paris.pollux@medicare.com', 'biologie_prev', 'biologie_femme', 'cencerologie');
+(2, 'Pollux', '35 Quai de Grenelle', 'P103', 146538463, 'paris.pollux@medicare.com', 'biologie_prev', 'biologie_femme', 'cencerologie'),
+(3, 'a', 'z', 'a', 1, 'a', 'biologie_route', 'cancerologie', 'gynecologie'),
+(4, 'ezz', 'ree', 'zaf', 4, 'paris.pollux@medicare.com', 'biologie_femme', 'biologie_route', 'gynecologie');
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `medecins` (
   `photo` varchar(255) NOT NULL,
   `ID_connexion` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `medecins`
@@ -129,7 +129,8 @@ CREATE TABLE IF NOT EXISTS `medecins` (
 
 INSERT INTO `medecins` (`ID`, `Nom`, `Prenom`, `specialite`, `Mail`, `mdp`, `telephone`, `CV`, `photo`, `ID_connexion`) VALUES
 (4, 'Ho', 'Kimi', 'addictologie', 'paris.pollux@medicare.com', 'Kimi*2004', 614121315, 'oui', 'non', NULL),
-(51, 'Ribaute', 'Maxence', 'psychiatrie', 'maxence.ribaute@medicare.com', 'Maxence*2004', 614131215, 'oui', 'non', NULL);
+(5, 'a', 's', 'addictologie', 's', 'Andy*2004', 1, 'non', 'non', NULL),
+(6, 'a', 'z', 'generaliste', 'andriamanga.andy@gmail.com', 'Andy*2004', 0, '1', '4', NULL);
 
 -- --------------------------------------------------------
 
