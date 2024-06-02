@@ -90,7 +90,7 @@
 				<input type="password" name="mdp" placeholder="Nouveau mot de passe" id="mdp" required>
 				</div>
 				<div class="form-group">
-				<label for="mdp1">Confirmer votre mot de passe :</label>
+				<label for="mdp">Confirmer votre mot de passe :</label>
 				<input type="password" name="mdp" placeholder="Confirmez votre nouveau mot de passe" id="mdp" required>
 				</div>
 				<input type="submit" value="Changer les informations" class="change">
@@ -130,7 +130,7 @@
 				<input type="password" name="mdp" placeholder="Nouveau mot de passe" id="mdp" required>
 				</div>
 				<div class="form-group">
-				<label for="mdp1">Confirmer votre mot de passe :</label>
+				<label for="mdp">Confirmer votre mot de passe :</label>
 				<input type="password" name="mdp" placeholder="Confirmez votre nouveau mot de passe" id="mdp" required>
 				</div>
 				<input type="submit" value="Changer les informations" class="change">

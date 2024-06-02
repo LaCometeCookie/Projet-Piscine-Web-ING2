@@ -27,31 +27,22 @@
 	}
 	if($compte == "admin")
 	{
-		$reponse = $bdd->prepare('UPDATE administrateur SET ID = :ID, Nom= :Nom, Prenom= :Prenom, Mail = :Mail, mdp = :mdp, ID_connexion = :ID_connexion WHERE Nom = :Nom AND Prenom= :Prenom');
+		$reponse = $bdd->prepare('UPDATE administrateur SET mdp = :mdp WHERE Nom = :Nom AND Prenom= :Prenom');
 		$reponse->execute(array(
-			'Nom' => $_POST['nom'],
-			'Prenom' => $_POST['prenom'],
-			'Mail' => $_POST['mail'],
 			'mdp'=> $_POST['mdp'],
 		));
 	}
 	if($compte == "client")
 	{
-		$reponse = $bdd->prepare('UPDATE client SET Nom= :Nom, Prenom= :Prenom, Mail = :Mail, mdp = :mdp WHERE Nom = :Nom AND Prenom= :Prenom');
+		$reponse = $bdd->prepare('UPDATE client SET mdp = :mdp WHERE Nom = :Nom AND Prenom= :Prenom');
 		$reponse->execute(array(
-			'Nom' => $_POST['nom'],
-			'Prenom' => $_POST['prenom'],
-			'Mail' => $_POST['mail'],
 			'mdp'=> $_POST['mdp'],
 		));
 	}
 	if($compte == "medecin")
 	{
-		$reponse = $bdd->prepare('UPDATE medecins SET Nom= :Nom, Prenom= :Prenom, Mail = :Mail, mdp = :mdp WHERE Nom = :Nom AND Prenom= :Prenom');
+		$reponse = $bdd->prepare('UPDATE medecins SET mdp = :mdp WHERE Nom = :Nom AND Prenom= :Prenom');
 		$reponse->execute(array(
-			'Nom' => $_POST['nom'],
-			'Prenom' => $_POST['prenom'],
-			'Mail' => $_POST['mail'],
 			'mdp'=> $_POST['mdp'],
 		));
 	}

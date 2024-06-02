@@ -14,6 +14,27 @@
  
  <!-- Dernier JavaScript compilé --> 
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+ <style>
+        .navbar-nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .navbar-nav > li {
+            float: none;
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-brand img {
+            max-height: 40px; /* A ajuster*/
+            margin-right: 10px;
+        }
+        .nav-item-accueil a {
+            color: blue !important;
+        }
+    </style>
 </head>  
 <body>
 	<?php
@@ -49,44 +70,32 @@
           $ok = FALSE;
      }
 	
-	if($ok)
-	{
-          
-  	?><!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
-       <button type="button" class="btn btn-link">
-            <a href = "index.php">Accueil</a></button> 
-       <button type="button" class="btn btn-link">
-            <a href = "parcourir.php">Parcourir</a>
-       </button>
-       <button type="button" class="btn btn-link">
-            <a href = "rdv.php">Rendez-vous</a>
-       </button>
-       <button type="button" class="btn btn-link">
-            <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
-       <button type="button" class="btn btn-info"> 
-            <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-       </button><?php
-	}
-     else
-     {
-          ?>
-     <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
-     <button type="button" class="btn btn-link">
-          <a href = "index.php">Accueil</a></button> 
-     <button type="button" class="btn btn-link">
-          <a href = "parcourir.php">Parcourir</a>
-     </button>
-     <button type="button" class="btn btn-link">
-          <a href = "rdv.php">Rendez-vous</a>
-     </button>
-     <button type="button" class="btn btn-link">
-          <a href = "connexion.php">Compte</a></button>
-     <button type="button" class="btn btn-info"> 
-          <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-     </button> 
-     <?php
-     }
-     ?>
+	mysqli_close($db_handle);
+    ?>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" alt="Logo"> Medicare
+                </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
+                    <li><a href="parcourir.php">Parcourir</a></li>
+                    <li><a href="rdv.php">Rendez-vous</a></li>
+                    <?php if ($ok): ?>
+                        <li><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
+                    <?php else: ?>
+                        <li><a href="connexion.php">Compte</a></li>
+                    <?php endif; ?>
+                    <li><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
      <!--Section RDV-->
      <h2>Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
      <select name="choix" id="choix">
@@ -189,8 +198,10 @@
           }
           ?>
      </div>
-     <?php
-     mysqli_close($db_handle); 
-     ?> 
+         <!-- Footer -->
+    <footer class="text-center mt-4">
+        <p>&copy; 2024 Medicare. Tous droits réservés.</p>
+        <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
+    </footer> 
 </body>  
 </html> 
