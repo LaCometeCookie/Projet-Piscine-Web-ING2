@@ -81,8 +81,8 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
-                    <li class="nav-item-parcourir><a href="parcourir.php">Parcourir</a></li>
-                    <li class="nav-item-rdv><a href="rdv.php">Rendez-vous</a></li>
+                    <li class="nav-item-parcourir"><a href="parcourir.php">Parcourir</a></li>
+                    <li class="nav-item-rdv"><a href="rdv.php">Rendez-vous</a></li>
                     <?php if ($ok): ?>
                         <li class="nav-item-compte"><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
                     <?php else: ?>
