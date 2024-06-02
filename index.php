@@ -170,12 +170,12 @@
                     <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
                     <li><a href="parcourir.php">Parcourir</a></li>
                     <li><a href="rdv.php">Rendez-vous</a></li>
-                    <?php if ($ok): ?>
+                    <li><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
+					<?php if ($ok): ?>
                         <li><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
                     <?php else: ?>
                         <li><a href="connexion.php">Compte</a></li>
                     <?php endif; ?>
-                    <li><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
                 </ul>
             </div>
         </div>
