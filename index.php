@@ -31,7 +31,7 @@
      .nav-item-accueil a {
           color: blue !important;
      }
-    </style>
+</style>
 </head>  
 <body>
     <?php
@@ -159,8 +159,7 @@
     ?>
 
     <!-- Navigation -->
-    <!-- Search bar v2 -->
-    <nav class="navbar navbar-default"> 
+    <nav class="navbar navbar-default">
           <div class="container-fluid">
                <div class="navbar-header">
                    <a class="navbar-brand" href="#">
@@ -182,40 +181,46 @@
                </div>
           </div>
      </nav>
-    <!-- Fin searchbar -->
 
-    <div class="container text-center">
-        <!-- Actualités -->
-        <h2>Actualités</h2>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Titre de l'actualité 1</h3>
-                <p>Ceci est le paragraphe de l'actualité 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-            </div>
-            <div class="col-md-6">
-                <img src="image1.jpg" class="img-responsive center-block" alt="Image 1">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Titre de l'actualité 2</h3>
-                <p>Ceci est le paragraphe de l'actualité 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
-            </div>
-            <div class="col-md-6">
-                <img src="image2.jpg" class="img-responsive center-block" alt="Image 2">
-            </div>
-        </div>
-        <!-- Ajouter plus d'actualités ici -->
-        <!-- Sous le format ci dessous -->
-        <div class="row">
-            <div class="col-md-6">
-                <h3></h3>
-                <p></p>
-            </div>  
-        </div>  
-      
-    <!-- Fin des actus -->
-    </div>
+      <div class="container text-center">
+          <!-- Actualités -->
+          <h2>Actualités</h2>
+          <div class="row">
+              <div class="col-md-6">
+                  <h3>Nouvelle variante du Coronavirus</h3>
+                  <p style="text-align: left;">En ce 25 Mai 2054, une enième nouveau variant du Coronavirus a été découvert. Voici nos conseils pour vous protéger :
+                  <br>
+                  <br>
+                  Lavez-vous les mains régulièrement avec de l'eau.<br>
+                  Utilisez un désinfectant pour les mains à base d'alcool (au moins 60%).<br>
+                  Portez un masque en public.<br>
+                  Changez de masque régulièrement.<br>
+                  Maintenez une distance d'au moins 1 mètre <br>
+                  Nettoyez et désinfectez régulièrement les surfaces fréquemment touchées.<br>
+                  Consultez un médecin si vous développez des signes de fièvres.<br>
+                  Enfin restez informé des directives sanitaires locales.<br>
+                  </p>
+              </div>
+              <div class="col-md-6">
+                  <img src="Blog1.jpeg" class="img-responsive center-block" alt="Image 1">
+              </div>
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-6">
+                  <h3>Greffe de bras Robotique</h3>
+                  <p style="text-align: left;">La greffe de bras robotisé représente une avancée spectaculaire dans le domaine de la médecine et de la technologie. Cette intervention innovante combine les principes de la chirurgie reconstructive et les technologies de pointe en robotique pour offrir une solution fonctionnelle aux patients ayant perdu un ou deux bras.<br>
+
+                  Un bras robotisé est implanté chirurgicalement et relié aux nerfs et muscles restants du patient, permettant un contrôle précis et naturel des mouvements grâce à des interfaces neuronales et des algorithmes avancés. Les patients peuvent ainsi réaliser des gestes quotidiens avec une grande précision, améliorant beaucoup leur qualité de vie.<br>
+
+                  Cette technologie est encore en phase de développement et de perfectionnement, mais elle offre déjà un aperçu prometteur de l'avenir des prothèses et des solutions de réhabilitation pour les amputés. Les défis demeurent, notamment en termes de miniaturisation des composants, de durabilité des matériaux et d'intégration harmonieuse avec le corps humain, mais les progrès rapides dans ce domaine laissent espérer des résultats de plus en plus impressionnants.
+                  </p>
+              </div>
+              <div class="col-md-6">
+                  <img src="Blog2.jpg" class="img-responsive center-block" alt="Image 2">
+              </div>
+          </div>
+      </div>
 
     <!-- Footer -->
     <footer class="text-center mt-4">
