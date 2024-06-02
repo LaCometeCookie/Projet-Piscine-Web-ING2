@@ -76,7 +76,113 @@
           <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
      </button> 
      <?php
-     }
+     }?>
+     <!--Section RDV-->
+     <h2>Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
+     <select name="choix" id="choix">
+          <optgroup label="Votre demande de RDV">
+          <option value="medecin" id='choix' onclick ="document.getElementById('medecin').style.display = 'block' ;
+          document.getElementById('labo').style.display = 'none' ;">Médecin</option>
+          <option value = "labo" id = 'choix' onclick ="document.getElementById('medecin').style.display = 'none' ;
+          document.getElementById('labo').style.display = 'block' ;">Laboratoires</option>
+          </optgroup>
+     </select>
+     <div id ="medecin" style = "display: none">
+          <select name="choix medecin" id="choix medecin">
+          <optgroup label="Votre medecin">
+          <?php //A mettre en XML
+               $indice = 0;
+               $reponse = $bdd->query('SELECT Nom, Prenom FROM medecins ORDER BY Nom');
+               while ($donnees = $reponse->fetch())
+               {    
+                    $Nom[$indice] = $donnees['Nom'];
+                    $Prenom[$indice] = $donnees['Prenom'];
+                    $indice++;
+               }
+               $reponse->closeCursor();
+               for($i = 0 ; $i < $indice ; $i++)
+               {
+                    ?>
+                    <option value= "<?php echo $Nom[$i] . $Prenom[$i];?>" 
+                    id="choix medecin" onclick ="document.getElementById('<?php echo $Nom[$i] . $Prenom[$i]?>').style.display = 'block' ;"><?php echo $Nom[$i] ." ". $Prenom[$i];?></option>
+                    <?php     
+               }
+          ?>
+          </optgroup>               
+          </select>
+          <?php
+          for($i = 0 ; $i < $indice ; $i++)
+               {
+                    ?>
+                    <div id = "<?php echo $Nom[$i].$Prenom[$i];?>" style = "display : none">
+                         <!--Afficher le tableau des créneaux (ou autre ça dépend)-->
+                         <p>Afficher le tableau des créneaux (ou autre ça dépend)</p>
+                    </div>
+                    <?php     
+               }
+          ?>
+     </div>
+     <div id ="labo" style = "display: none">
+          <select name="choix labo" id="choix labo">
+          <optgroup label="Votre labo">
+          <?php //A mettre en XML
+               $indicel = 0;
+               $reponse = $bdd->query('SELECT ID, Nom FROM labos ORDER BY Nom');
+               while ($donnees = $reponse->fetch())
+               {    
+                    $Noml[$indicel] = $donnees['Nom'];
+                    $indicel++;
+               }
+               $reponse->closeCursor();
+               for($i = 0 ; $i < $indicel ; $i++)
+               {
+                    ?>
+                    <option value= "<?php echo $Noml[$i];?>" 
+                    id="choix labo" onclick ="document.getElementById('<?php echo $Noml[$i]?>').style.display = 'block' ;"><?php echo $Noml[$i];?></option>
+                    <?php     
+               }
+          ?>
+          </optgroup>               
+          </select>
+          <?php
+          for($i = 0 ; $i < $indicel ; $i++)
+          {
+               ?>
+               <div id = "<?php echo $Noml[$i];?>" style = "display : none">
+               <?php
+               $ID = (int)$_POST['ID'];
+               $reponse = $bdd->query("SELECT Service1, Service2, Service3 FROM labos WHERE ID = $ID");
+               $donnees = $reponse->fetch();
+               $se1 = $donnees['Service1'];
+               $se2 = $donnees['Service2'];
+               $se3 = $donnees['Service3'];
+               $reponse->closeCursor();
+               ?>
+               <!--Choix du service du labo sélectionné-->
+               <select name="choixs" id="choixs">
+                    <optgroup label="Votre service">
+                    <option value="<?php echo $se1?>" id='choixs' onclick ="document.getElementById('<?php echo $se1?>').style.display = 'block' ;
+                    document.getElementById('<?php echo $se2?>').style.display = 'none' ;
+                    document.getElementById('<?php echo $se3?>').style.display = 'none' ;"><?php echo htmlspecialchars($se1)?></option>
+                    <option value="<?php echo $se2?>" id='choixs' onclick ="document.getElementById('<?php echo $se1?>').style.display = 'none' ;
+                    document.getElementById('<?php echo $se2?>').style.display = 'block' ;
+                    document.getElementById('<?php echo $se3?>').style.display = 'none' ;"><?php echo htmlspecialchars($se2)?></option>
+                    <option value="<?php echo $se3?>" id='choixs' onclick ="document.getElementById('<?php echo $se1?>').style.display = 'none' ;
+                    document.getElementById('<?php echo $se2?>').style.display = 'none' ;
+                    document.getElementById('<?php echo $se3?>').style.display = 'block' ;"><?php echo htmlspecialchars($se3)?></option>
+                    </optgroup>
+               </select>
+               <!--Afficher le tableau des créneaux (ou autre ça dépend).-->
+               <!--Choisir 2 services payants pour la page paiement-->
+               </div>
+               <?php     
+          }
+          ?>
+     </div>
+     <?php
+     mysqli_close($db_handle); 
+     ?> 
+</body>
      mysqli_close($db_handle); 
      ?> 
 </body>  
