@@ -188,7 +188,7 @@
           <div class="row">
               <div class="col-md-6">
                   <h3>Nouvelle variante du Coronavirus</h3>
-                  <p style="text-align: left;">En ce 25 Mai 2054, une enième nouvelle variante du Coronavirus a été découverte découvrer nos conseils pour vous protéger :
+                  <p style="text-align: left;">En ce 25 Mai 2054, une enième nouveau variant du Coronavirus a été découvert. Voici nos conseils pour vous protéger :
                   <br>
                   <br>
                   Lavez-vous les mains régulièrement avec de l'eau.<br>
