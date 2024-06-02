@@ -10,6 +10,8 @@
 - SQL
 - XML
 
+All HTML files are now included in their complementary PHP files
+
 Reste à faire : 
 - Gestion des RDV (paiement inclus quand nécesaire)
 - Design CSS

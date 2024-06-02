@@ -31,7 +31,7 @@
      .nav-item-parcourir a {
           color: blue !important;
      }
-</style>
+    </style>
 </head>  
 <body>
     <?php
@@ -159,7 +159,8 @@
     ?>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default">
+    <!-- Search bar v2 -->
+    <nav class="navbar navbar-default"> 
           <div class="container-fluid">
                <div class="navbar-header">
                    <a class="navbar-brand" href="#">
@@ -181,6 +182,7 @@
                </div>
           </div>
      </nav>
+    <!-- Fin searchbar -->
 
     <div class="container text-center">
         <!-- Actualités -->
@@ -203,6 +205,16 @@
                 <img src="image2.jpg" class="img-responsive center-block" alt="Image 2">
             </div>
         </div>
+        <!-- Ajouter plus d'actualités ici -->
+        <!-- Sous le format ci dessous -->
+        <div class="row">
+            <div class="col-md-6">
+                <h3></h3>
+                <p></p>
+            </div>  
+        </div>  
+      
+    <!-- Fin des actus -->
     </div>
 
     <!-- Footer -->

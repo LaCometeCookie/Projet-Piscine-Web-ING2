@@ -16,6 +16,8 @@
  
  <!-- Dernier JavaScript compilé --> 
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+  
+ <!-- CSS -->
  <style>
      .navbar-nav {
           display: flex;
@@ -38,8 +40,12 @@
           color: blue !important;
      }
 </style>
+
 </head>  
+
+
 <body>
+  <!-- Script PHP de connexion à la BDD -->
 	<?php
      session_start();
      sleep(1);//Temps de pause pour l'action (petit plus réaliste)
@@ -75,7 +81,8 @@
 	if($ok)
 	{
           
-  	?>
+  ?>
+  
      <!-- Navigation -->
        <nav class="navbar navbar-default">
          <div class="container-fluid">
@@ -95,6 +102,7 @@
               </div>
          </div>
     </nav>
+  
        <?php
           if($donnees['compte'] == "medecin")
           {?>
@@ -299,5 +307,10 @@
      }
      mysqli_close($db_handle); 
      ?>
+              <!-- Footer -->
+    <footer class="text-center mt-4">
+        <p>&copy; 2024 Medicare. Tous droits réservés.</p>
+        <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
+    </footer> 
 </body>  
 </html> 

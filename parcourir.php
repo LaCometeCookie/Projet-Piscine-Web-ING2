@@ -12,6 +12,7 @@
  <!-- Dernier JavaScript compilé --> 
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 
+<!-- JavaScript --> 
  <script>
      $(document).ready(function() {
          $('#choix').change(function() {
@@ -21,7 +22,9 @@
          });
      });
  </script>
-  <style>
+  
+ <!-- CSS --> 
+ <style>
      .navbar-nav {
           display: flex;
           justify-content: center;
@@ -44,6 +47,8 @@
      }
 </style>
 </head>  
+
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~ Script PHP du parcours des informations ~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 <body>
      <?php
      session_start();
@@ -76,8 +81,8 @@
           // L'utilisateur n'est pas connecté
           $ok = FALSE;
      }
-	
     ?>
+
 
     <!-- Navigation -->
     <nav class="navbar navbar-default">
@@ -248,9 +253,14 @@
                </table>
           </div>
      </div>
+  
+ 
      <?php
           mysqli_close($db_handle); 
      ?>
+    <!-- Fin de la communication serveur -->
+  
+  
      <!-- Footer -->
     <footer class="text-center mt-4">
         <p>&copy; 2024 Medicare. Tous droits réservés.</p>

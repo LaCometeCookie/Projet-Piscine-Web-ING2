@@ -13,6 +13,8 @@
 
 <!-- Dernier JavaScript compilé --> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+  
+<!-- CSS -->  
 <style>
      .navbar-nav {
           display: flex;
@@ -34,8 +36,11 @@
      .nav-item-parcourir a {
           color: blue !important;
      }
-</style> 
+</style>
+  
 </head>  
+
+
 <body>
 	<?php
      session_start();
@@ -59,12 +64,14 @@
      {
           // L'utilisateur n'est pas connecté
           $ok = FALSE;
-     }   
-  	?>
-     
-     <!-- Navigation -->
-     <nav class="navbar navbar-default">
-       <div class="container-fluid">
+     }
+	
+	mysqli_close($db_handle);
+    ?>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
                     <img src="logo.png" alt="Logo"> Medicare
@@ -73,22 +80,19 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
-                    <li class="nav-item-parcourir"><a href="parcourir.php">Parcourir</a></li>
-                    <li class="nav-item-rdv"><a href="rdv.php">Rendez-vous</a></li>
-                    <li class="nav-item-recherche"><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
-                         <?php if ($ok): ?>
-                    <li class="nav-item-compte"><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
+                    <li><a href="parcourir.php">Parcourir</a></li>
+                    <li><a href="rdv.php">Rendez-vous</a></li>
+                    <?php if ($ok): ?>
+                        <li><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
                     <?php else: ?>
                         <li><a href="connexion.php">Compte</a></li>
                     <?php endif; ?>
+                    <li><a href="recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche</a></li>
                 </ul>
             </div>
-       </div>
-  </nav>
-     <?php
+        </div>
+    </nav> 
 
-     mysqli_close($db_handle); 
-     ?>
      <form method="post" action="rechercher.php">
      <table>
         <tr>
@@ -97,6 +101,11 @@
             <td><input type="submit" name= "rechercher" value="rechercher"></td>
         </tr>
      </table>
-    </form> 
+    </form>
+        <!-- Footer -->
+        <footer class="text-center mt-4">
+        <p>&copy; 2024 Medicare. Tous droits réservés.</p>
+        <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
+    </footer>
 </body>  
 </html> 
