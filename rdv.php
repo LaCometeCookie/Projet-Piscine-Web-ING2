@@ -142,13 +142,18 @@ if ($db_found) {
                         <div id="medecin_<?php echo $medecin['ID']; ?>_form" style="display: none;">
                             <select class="form-control" name="heure" id="heure_<?php echo $medecin['ID']; ?>">
                                 <option value="">Sélectionnez une heure</option>
-                                <!-- Remplissez les heures dynamiquement ici -->
+                                <?php for ($hour = 10; $hour <= 17; $hour++): ?>
+                                    <option value="<?php echo sprintf('%02d', $hour) ?>:00"><?php echo sprintf('%02d', $hour) ?>:00</option>
+                                <?php endfor; ?>
                             </select>
                             <select class="form-control" name="date" id="date_<?php echo $medecin['ID']; ?>">
                                 <option value="">Sélectionnez une date</option>
-                                <!-- Remplissez les dates dynamiquement ici -->
+                                <?php for ($i = 0; $i < 6; $i++): ?>
+                                    <?php $date = date('d/m/Y', strtotime("+$i days")); ?>
+                                    <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
+                                <?php endfor; ?>
                             </select>
-                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $medecin['ID']; ?>')">Valider mon RDV</button>
+                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $medecin['ID']; ?>', 'medecin')">Valider mon RDV</button>
                         </div>
                     </td>
                 </tr>
@@ -175,13 +180,18 @@ if ($db_found) {
                         <div id="labo_<?php echo $labo['ID']; ?>_form" style="display: none;">
                             <select class="form-control" name="heure" id="heure_<?php echo $labo['ID']; ?>">
                                 <option value="">Sélectionnez une heure</option>
-                                <!-- Remplissez les heures dynamiquement ici -->
+                                <?php for ($hour = 10; $hour <= 17; $hour++): ?>
+                                    <option value="<?php echo sprintf('%02d', $hour) ?>:00"><?php echo sprintf('%02d', $hour) ?>:00</option>
+                                <?php endfor; ?>
                             </select>
                             <select class="form-control" name="date" id="date_<?php echo $labo['ID']; ?>">
                                 <option value="">Sélectionnez une date</option>
-                                <!-- Remplissez les dates dynamiquement ici -->
+                                <?php for ($i = 0; $i < 6; $i++): ?>
+                                    <?php $date = date('d/m/Y', strtotime("+$i days")); ?>
+                                    <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
+                                <?php endfor; ?>
                             </select>
-                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $labo['ID']; ?>')">Valider mon RDV</button>
+                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $labo['ID']; ?>', 'labo')">Valider mon RDV</button>
                         </div>
                     </td>
                 </tr>
@@ -190,6 +200,7 @@ if ($db_found) {
         </table>
     </div>
 </div>
+
 <script>
     function toggleSections() {
         var choix = document.getElementById('choix').value;
@@ -202,7 +213,7 @@ if ($db_found) {
         document.getElementById(formId).style.display = 'block';
     }
 
-    function validateAppointment(id) {
+    function validateAppointment(id, type) {
         var selectedDate = document.getElementById('date_' + id).value;
         var selectedTime = document.getElementById('heure_' + id).value;
         if (selectedDate === '' || selectedTime === '') {
@@ -218,6 +229,8 @@ if ($db_found) {
         }
     }
 </script>
+
+
 <!-- Footer -->
 <br>
 <br>
