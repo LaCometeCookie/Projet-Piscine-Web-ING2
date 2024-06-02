@@ -200,6 +200,7 @@ if ($db_found) {
                 </tbody>
             </table>
         </div>
+
     <?php else: ?>
         <div class="alert alert-warning" role="alert">
             Vous devez vous connecter avant de pouvoir prendre rendez-vous.
@@ -225,13 +226,28 @@ if ($db_found) {
         if (selectedDate === '' || selectedTime === '') {
             alert('Veuillez sélectionner une date et une heure pour votre rendez-vous.');
         } else {
-            // Envoyer le rendez-vous à la base de données ou effectuer d'autres actions nécessaires
-            alert('Rendez-vous confirmé pour le ' + selectedDate + ' à ' + selectedTime);
-            // Réinitialiser les sélections
-            document.getElementById('date_' + id).value = '';
-            document.getElementById('heure_' + id).value = '';
-            // Cacher le formulaire après la validation
-            document.getElementById(type + '_' + id + '_form').style.display = 'none';
+            var confirmation = confirm('Confirmer le rendez-vous pour le ' + selectedDate + ' à ' + selectedTime + ' ?');
+            if (confirmation) {
+                // Envoyer le rendez-vous à la base de données
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            alert('Rendez-vous confirmé avec succès.');
+                            // Réinitialiser les sélections
+                            document.getElementById('date_' + id).value = '';
+                            document.getElementById('heure_' + id).value = '';
+                            // Cacher le formulaire après la validation
+                            document.getElementById(type + '_' + id + '_form').style.display = 'none';
+                        } else {
+                            alert('Une erreur s\'est produite lors de la confirmation du rendez-vous.');
+                        }
+                    }
+                };
+                xhr.open('POST', 'confirmation_rdv.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send('date=' + selectedDate + '&time=' + selectedTime + '&type=' + type + '&id=' + id);
+            }
         }
     }
 </script>
