@@ -34,7 +34,7 @@
           margin-right: 10px;
           margin-top: 40px;
      }
-     .nav-item-parcourir a {
+     .nav-item-rdv a {
           color: blue !important;
      }
 </style>
@@ -81,10 +81,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="nav-item-accueil"><a href="index.php">Accueil</a></li>
-                    <li><a href="parcourir.php">Parcourir</a></li>
-                    <li><a href="rdv.php">Rendez-vous</a></li>
+                    <li class="nav-item-parcourir><a href="parcourir.php">Parcourir</a></li>
+                    <li class="nav-item-rdv><a href="rdv.php">Rendez-vous</a></li>
                     <?php if ($ok): ?>
-                        <li><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
+                        <li class="nav-item-recherche><a href="profil.php"><?php echo htmlspecialchars($donnees['Nom']) . " " . htmlspecialchars($donnees['Prenom']); ?></a></li>
                     <?php else: ?>
                         <li><a href="connexion.php">Compte</a></li>
                     <?php endif; ?>
