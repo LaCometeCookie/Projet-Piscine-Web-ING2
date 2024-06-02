@@ -184,8 +184,8 @@
 
 
     <!-- Caroussel -->
-    <div class="container">
-        <h2>Les capitales européennes</h2>
+    <div class="container text-center">
+        <!-- <h2>Nos medecins</h2> -->
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -200,31 +200,33 @@
 
                 <div class="item active">
 
-                    <img src="Images/Caroussel1.jpg" alt="Paris" style="width:100%; height: 800px;">
+                    <img src="Images/Caroussel1.jpg" alt="Paris" style="width:100%; height: 600px;">
                     <div class="carousel-caption">
-                        <h3>Paris</h3>
-                        <p>La ville lumière!</p>
+                        <h2>Les medecins</h2>
+                        <p>Nos medecins sont à votre écoute pour répondre au mieux à vos interrogations</p>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="Images/Caroussel2.jpeg" alt="Berlin" style="width:100%; height: 800px;">
+                    <img src="Images/Caroussel2.jpeg" alt="Berlin" style="width:100%; height: 600px;">
                     <div class="carousel-caption">
-                        <h3>Berlin</h3>
-                        <p>Tu te perds en vélo</p>
+                        <h2>Les laboratoires</h2>
+                        <p>Nos différents laboratoires sont présents pour vous apporter un traitement de qualité
+                            ainsi qu'un suivi médical professionnel</p>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="images/Caroussel3.jpg" alt="Prague" style="width:100%; height: 800px;">
+                    <img src="images/Caroussel3.jpg" alt="Prague" style="width:100%; height: 600px;">
                     <div class="carousel-caption">
-                        <h3>Prague</h3>
-                        <p>Tchéquie</p>
+                        <h2>Les spécialistes</h2>
+                        <p>Nos nombreux spécialistes sont formés pour vous apporter les meilleurs soins
+                        possibles et s'assurer que vous retrouviez la santé en toute sérénité</p>
                     </div>
                 </div>
                 <div class="item">
-                    <img src="images/Caroussel4.jpg" alt="Rome" style="width:100%; height: 800px;">
+                    <img src="images/Caroussel4.jpg" alt="Rome" style="width:100%; height: 600px;">
                     <div class="carousel-caption">
-                        <h3>Rome</h3>
-                        <p>On ne coupe pas</p>
+                        <h2>Medicare</h2>
+                        <p>Nous mettons en relation clients et professionnel pour des soins de qualité</p>
                     </div>
                 </div>
 
