@@ -25,15 +25,6 @@
 	//Rappel : votre serveur = localhost | votre login = root | votre mot de pass = '' (rien) 
 	$db_handle = mysqli_connect('localhost', 'root', '' ); 
 	$db_found = mysqli_select_db($db_handle, $database);
-     $from = isset($_POST["from"])? $_POST["from"] : "";
-     try // Test de connexion à la base de données (retorune une erreur en cas d'échec)
-     {
-          $bdd=new PDO('mysql:host=localhost;dbname=pj web 2024;charset=utf8', 'root', ''); //On y référence le nom d'utilisateur et le mot de passe, la base à utiliser et l'encodage
-     }
-     catch (Exception $e)
-     {
-          die('Erreur : ' . $e->getMessage()); // En cas d'erreur de connexion, un message est affiché
-     }
      if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) 
      {
           // L'utilisateur est connecté
@@ -85,8 +76,7 @@
           <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
      </button> 
      <?php
-     }
-     ?>
+     }?>
      <!--Section RDV-->
      <h2>Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
      <select name="choix" id="choix">
@@ -190,6 +180,9 @@
           ?>
      </div>
      <?php
+     mysqli_close($db_handle); 
+     ?> 
+</body>
      mysqli_close($db_handle); 
      ?> 
 </body>  
