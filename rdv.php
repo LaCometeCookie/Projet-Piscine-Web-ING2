@@ -120,85 +120,91 @@ if ($db_found) {
         </select>
     </div>
 
-    <div id="medecin" class="section-hidden">
-        <h3>Liste des médecins</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Spécialité</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($medecins as $medecin): ?>
+    <?php if ($ok): ?>
+        <div id="medecin" class="section-hidden">
+            <h3>Liste des médecins</h3>
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td><?php echo htmlspecialchars($medecin['Nom']); ?></td>
-                    <td><?php echo htmlspecialchars($medecin['Prenom']); ?></td>
-                    <td><?php echo htmlspecialchars($medecin['specialite']); ?></td>
-                    <td>
-                        <a href="#" class="btn btn-primary" onclick="showAppointmentForm('<?php echo $medecin['ID']; ?>', 'medecin')">Prendre rendez-vous</a>
-                        <div id="medecin_<?php echo $medecin['ID']; ?>_form" style="display: none;">
-                            <select class="form-control" name="heure" id="heure_<?php echo $medecin['ID']; ?>">
-                                <option value="">Sélectionnez une heure</option>
-                                <?php for ($hour = 10; $hour <= 17; $hour++): ?>
-                                    <option value="<?php echo sprintf('%02d', $hour) ?>:00"><?php echo sprintf('%02d', $hour) ?>:00</option>
-                                <?php endfor; ?>
-                            </select>
-                            <select class="form-control" name="date" id="date_<?php echo $medecin['ID']; ?>">
-                                <option value="">Sélectionnez une date</option>
-                                <?php for ($i = 0; $i < 6; $i++): ?>
-                                    <?php $date = date('d/m/Y', strtotime("+$i days")); ?>
-                                    <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
-                                <?php endfor; ?>
-                            </select>
-                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $medecin['ID']; ?>', 'medecin')">Valider mon RDV</button>
-                        </div>
-                    </td>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Spécialité</th>
+                    <th>Action</th>
                 </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                <?php foreach ($medecins as $medecin): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($medecin['Nom']); ?></td>
+                        <td><?php echo htmlspecialchars($medecin['Prenom']); ?></td>
+                        <td><?php echo htmlspecialchars($medecin['specialite']); ?></td>
+                        <td>
+                            <a href="#" class="btn btn-primary" onclick="showAppointmentForm('<?php echo $medecin['ID']; ?>', 'medecin')">Prendre rendez-vous</a>
+                            <div id="medecin_<?php echo $medecin['ID']; ?>_form" style="display: none;">
+                                <select class="form-control" name="heure" id="heure_<?php echo $medecin['ID']; ?>">
+                                    <option value="">Sélectionnez une heure</option>
+                                    <?php for ($hour = 10; $hour <= 17; $hour++): ?>
+                                        <option value="<?php echo sprintf('%02d', $hour) ?>:00"><?php echo sprintf('%02d', $hour) ?>:00</option>
+                                    <?php endfor; ?>
+                                </select>
+                                <select class="form-control" name="date" id="date_<?php echo $medecin['ID']; ?>">
+                                    <option value="">Sélectionnez une date</option>
+                                    <?php for ($i = 0; $i < 6; $i++): ?>
+                                        <?php $date = date('d/m/Y', strtotime("+$i days")); ?>
+                                        <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                                <button class="btn btn-success" onclick="validateAppointment('<?php echo $medecin['ID']; ?>', 'medecin')">Valider mon RDV</button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
 
-    <div id="labo" class="section-hidden">
-        <h3>Liste des laboratoires</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($labos as $labo): ?>
+        <div id="labo" class="section-hidden">
+            <h3>Liste des laboratoires</h3>
+            <table class="table table-striped">
+                <thead>
                 <tr>
-                    <td><?php echo htmlspecialchars($labo['Nom']); ?></td>
-                    <td>
-                        <a href="#" class="btn btn-primary" onclick="showAppointmentForm('<?php echo $labo['ID']; ?>', 'labo')">Prendre rendez-vous</a>
-                        <div id="labo_<?php echo $labo['ID']; ?>_form" style="display: none;">
-                            <select class="form-control" name="heure" id="heure_<?php echo $labo['ID']; ?>">
-                                <option value="">Sélectionnez une heure</option>
-                                <?php for ($hour = 10; $hour <= 17; $hour++): ?>
-                                    <option value="<?php echo sprintf('%02d', $hour) ?>:00"><?php echo sprintf('%02d', $hour) ?>:00</option>
-                                <?php endfor; ?>
-                            </select>
-                            <select class="form-control" name="date" id="date_<?php echo $labo['ID']; ?>">
-                                <option value="">Sélectionnez une date</option>
-                                <?php for ($i = 0; $i < 6; $i++): ?>
-                                    <?php $date = date('d/m/Y', strtotime("+$i days")); ?>
-                                    <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
-                                <?php endfor; ?>
-                            </select>
-                            <button class="btn btn-success" onclick="validateAppointment('<?php echo $labo['ID']; ?>', 'labo')">Valider mon RDV</button>
-                        </div>
-                    </td>
+                    <th>Nom</th>
+                    <th>Action</th>
                 </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                <?php foreach ($labos as $labo): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($labo['Nom']); ?></td>
+                        <td>
+                            <a href="#" class="btn btn-primary" onclick="showAppointmentForm('<?php echo $labo['ID']; ?>', 'labo')">Prendre rendez-vous</a>
+                            <div id="labo_<?php echo $labo['ID']; ?>_form" style="display: none;">
+                                <select class="form-control" name="heure" id="heure_<?php echo $labo['ID']; ?>">
+                                    <option value="">Sélectionnez une heure</option>
+                                    <?php for ($hour = 10; $hour <= 17; $hour++): ?>
+                                        <option value="<?php echo sprintf('%02d', $hour) ?>:00"><?php echo sprintf('%02d', $hour) ?>:00</option>
+                                    <?php endfor; ?>
+                                </select>
+                                <select class="form-control" name="date" id="date_<?php echo $labo['ID']; ?>">
+                                    <option value="">Sélectionnez une date</option>
+                                    <?php for ($i = 0; $i < 6; $i++): ?>
+                                        <?php $date = date('d/m/Y', strtotime("+$i days")); ?>
+                                        <option value="<?php echo $date; ?>"><?php echo $date; ?></option>
+                                    <?php endfor; ?>
+                                </select>
+                                <button class="btn btn-success" onclick="validateAppointment('<?php echo $labo['ID']; ?>', 'labo')">Valider mon RDV</button>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="alert alert-warning" role="alert">
+            Vous devez vous connecter avant de pouvoir prendre rendez-vous.
+        </div>
+    <?php endif; ?>
 </div>
 
 <script>
@@ -229,6 +235,7 @@ if ($db_found) {
         }
     }
 </script>
+
 
 
 <!-- Footer -->
