@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="fr">
 <head>
     <title>Medicare | RDV</title>
     <meta charset="utf-8"/>
@@ -46,7 +47,6 @@
     </style>
 
 </head>
-
 <body>
 <?php
 session_start();
@@ -72,7 +72,7 @@ if (isset($_SESSION['ID_session']) && isset($_SESSION['ID'])) {
 $medecins = [];
 $labos = [];
 if ($db_found) {
-    $result = mysqli_query($db_handle, 'SELECT ID, Nom, Prenom FROM medecins ORDER BY Nom');
+    $result = mysqli_query($db_handle, 'SELECT ID, Nom, Prenom, specialite FROM medecins ORDER BY Nom');
     while ($row = mysqli_fetch_assoc($result)) {
         $medecins[] = $row;
     }
@@ -127,6 +127,7 @@ if ($db_found) {
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
+                <th>Spécialité</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -135,6 +136,7 @@ if ($db_found) {
                 <tr>
                     <td><?php echo htmlspecialchars($medecin['Nom']); ?></td>
                     <td><?php echo htmlspecialchars($medecin['Prenom']); ?></td>
+                    <td><?php echo htmlspecialchars($medecin['specialite']); ?></td>
                     <td><a href="prendre_rdv.php?type=medecin&id=<?php echo $medecin['ID']; ?>" class="btn btn-primary">Prendre rendez-vous</a></td>
                 </tr>
             <?php endforeach; ?>
