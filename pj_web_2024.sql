@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS `administrateur` (
 --
 
 INSERT INTO `administrateur` (`ID`, `Nom`, `Prenom`, `Mail`, `mdp`, `ID_connexion`) VALUES
-(2, 'Andriamanga', 'Andy', 'andriamanga.andy@gmail.com', 'Andy*2004', 400653933);
+(2, 'Andriamanga', 'Andy', 'andriamanga.andy@gmail.com', 'Andy*2004', 400653933),
+(13, 'Boutevin', 'Côme', 'come.boutevin@gmail.com', 'Come*2003', 132567655);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,8 @@ CREATE TABLE IF NOT EXISTS `client` (
 --
 
 INSERT INTO `client` (`ID`, `Nom`, `Prenom`, `Mail`, `mdp`, `Adresse`, `Cvitale`, `Paiement`, `ID_connexion`) VALUES
-(5, 'Boutevin', 'Come', 'paris.michel@medicare.com', 'Come*2003', '14 rue sextius michel', '10306012145', 'visa', 776488339);
+(5, 'Lugagne', 'Justin', 'paris.michel@medicare.com', 'Justin*2003', '14 rue sextius michel', '10306012145', 'visa', 776488339),
+(89, 'Chose', 'Truc', 'chose.truc@medicare.com', 'Chose*Truc', '13 rue machin', '10234677148', 'visa', 776487835);
 
 -- --------------------------------------------------------
 
@@ -126,7 +128,8 @@ CREATE TABLE IF NOT EXISTS `medecins` (
 --
 
 INSERT INTO `medecins` (`ID`, `Nom`, `Prenom`, `specialite`, `Mail`, `mdp`, `telephone`, `CV`, `photo`, `ID_connexion`) VALUES
-(4, 'Ho', 'Kimi', 'addictologie', 'paris.pollux@medicare.com', 'Kimi*2004', 614121315, 'oui', 'non', NULL);
+(4, 'Ho', 'Kimi', 'addictologie', 'paris.pollux@medicare.com', 'Kimi*2004', 614121315, 'oui', 'non', NULL),
+(51, 'Ribaute', 'Maxence', 'psychiatrie', 'maxence.ribaute@medicare.com', 'Maxence*2004', 614131215, 'oui', 'non', NULL);
 
 -- --------------------------------------------------------
 
