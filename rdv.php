@@ -37,6 +37,15 @@
      .nav-item-rdv a {
           color: blue !important;
      }
+     .center-content {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+     }
+     .section-hidden {
+          display: none;
+     }
 </style>
 
 </head>  
@@ -94,114 +103,133 @@
         </div>
     </nav>
   
-     <!--Section RDV-->
-     <h2>Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
-     <select name="choix" id="choix">
-          <optgroup label="Votre demande de RDV">
-          <option value="medecin" id='choix' onclick ="document.getElementById('medecin').style.display = 'block' ;
-          document.getElementById('labo').style.display = 'none' ;">Médecin</option>
-          <option value = "labo" id = 'choix' onclick ="document.getElementById('medecin').style.display = 'none' ;
-          document.getElementById('labo').style.display = 'block' ;">Laboratoires</option>
-          </optgroup>
-     </select>
-     <div id ="medecin" style = "display: none">
-          <select name="choix medecin" id="choix medecin">
-          <optgroup label="Votre medecin">
-          <?php //A mettre en XML
-               $indice = 0;
-               $reponse = $bdd->query('SELECT Nom, Prenom FROM medecins ORDER BY Nom');
-               while ($donnees = $reponse->fetch())
-               {    
+    <div class="container center-content mt-5">
+    <h2 class="text-center">Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
+    <div class="form-group">
+        <label for="choix">Votre demande de RDV</label>
+        <select class="form-control" name="choix" id="choix" onchange="toggleSections()">
+            <option value="">Sélectionnez</option>
+            <option value="medecin">Médecin</option>
+            <option value="labo">Laboratoire</option>
+        </select>
+    </div>
+
+    <div id="medecin" class="section-hidden">
+        <div class="form-group">
+            <label for="choix-medecin">Votre médecin</label>
+            <select class="form-control" name="choix-medecin" id="choix-medecin" onchange="showMedecinCreneaux()">
+                <option value="">Sélectionnez un médecin</option>
+                <?php
+                $indice = 0;
+                $reponse = $bdd->query('SELECT Nom, Prenom FROM medecins ORDER BY Nom');
+                while ($donnees = $reponse->fetch()) {
                     $Nom[$indice] = $donnees['Nom'];
                     $Prenom[$indice] = $donnees['Prenom'];
                     $indice++;
-               }
-               $reponse->closeCursor();
-               for($i = 0 ; $i < $indice ; $i++)
-               {
-                    ?>
-                    <option value= "<?php echo $Nom[$i] . $Prenom[$i];?>" 
-                    id="choix medecin" onclick ="document.getElementById('<?php echo $Nom[$i] . $Prenom[$i]?>').style.display = 'block' ;"><?php echo $Nom[$i] ." ". $Prenom[$i];?></option>
-                    <?php     
-               }
-          ?>
-          </optgroup>               
-          </select>
-          <?php
-          for($i = 0 ; $i < $indice ; $i++)
-               {
-                    ?>
-                    <div id = "<?php echo $Nom[$i].$Prenom[$i];?>" style = "display : none">
-                         <!--Afficher le tableau des créneaux (ou autre ça dépend)-->
-                         <p>Afficher le tableau des créneaux (ou autre ça dépend)</p>
-                    </div>
-                    <?php     
-               }
-          ?>
-     </div>
-     <div id ="labo" style = "display: none">
-          <select name="choix labo" id="choix labo">
-          <optgroup label="Votre labo">
-          <?php //A mettre en XML
-               $indicel = 0;
-               $reponse = $bdd->query('SELECT ID, Nom FROM labos ORDER BY Nom');
-               while ($donnees = $reponse->fetch())
-               {    
+                }
+                $reponse->closeCursor();
+                for ($i = 0; $i < $indice; $i++) {
+                    echo "<option value='{$Nom[$i]}{$Prenom[$i]}'>{$Nom[$i]} {$Prenom[$i]}</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <?php
+        for ($i = 0; $i < $indice; $i++) {
+            echo "<div id='{$Nom[$i]}{$Prenom[$i]}' class='section-hidden'>";
+            echo "<p>Afficher le tableau des créneaux (ou autre ça dépend)</p>";
+            echo "</div>";
+        }
+        ?>
+    </div>
+
+    <div id="labo" class="section-hidden">
+        <div class="form-group">
+            <label for="choix-labo">Votre labo</label>
+            <select class="form-control" name="choix-labo" id="choix-labo" onchange="showLaboServices()">
+                <option value="">Sélectionnez un laboratoire</option>
+                <?php
+                $indicel = 0;
+                $reponse = $bdd->query('SELECT ID, Nom FROM labos ORDER BY Nom');
+                while ($donnees = $reponse->fetch()) {
                     $Noml[$indicel] = $donnees['Nom'];
                     $indicel++;
-               }
-               $reponse->closeCursor();
-               for($i = 0 ; $i < $indicel ; $i++)
-               {
-                    ?>
-                    <option value= "<?php echo $Noml[$i];?>" 
-                    id="choix labo" onclick ="document.getElementById('<?php echo $Noml[$i]?>').style.display = 'block' ;"><?php echo $Noml[$i];?></option>
-                    <?php     
-               }
-          ?>
-          </optgroup>               
-          </select>
-          <?php
-          for($i = 0 ; $i < $indicel ; $i++)
-          {
-               ?>
-               <div id = "<?php echo $Noml[$i];?>" style = "display : none">
-               <?php
-               $ID = (int)$_POST['ID'];
-               $reponse = $bdd->query("SELECT Service1, Service2, Service3 FROM labos WHERE ID = $ID");
-               $donnees = $reponse->fetch();
-               $se1 = $donnees['Service1'];
-               $se2 = $donnees['Service2'];
-               $se3 = $donnees['Service3'];
-               $reponse->closeCursor();
-               ?>
-               <!--Choix du service du labo sélectionné-->
-               <select name="choixs" id="choixs">
-                    <optgroup label="Votre service">
-                    <option value="<?php echo $se1?>" id='choixs' onclick ="document.getElementById('<?php echo $se1?>').style.display = 'block' ;
-                    document.getElementById('<?php echo $se2?>').style.display = 'none' ;
-                    document.getElementById('<?php echo $se3?>').style.display = 'none' ;"><?php echo htmlspecialchars($se1)?></option>
-                    <option value="<?php echo $se2?>" id='choixs' onclick ="document.getElementById('<?php echo $se1?>').style.display = 'none' ;
-                    document.getElementById('<?php echo $se2?>').style.display = 'block' ;
-                    document.getElementById('<?php echo $se3?>').style.display = 'none' ;"><?php echo htmlspecialchars($se2)?></option>
-                    <option value="<?php echo $se3?>" id='choixs' onclick ="document.getElementById('<?php echo $se1?>').style.display = 'none' ;
-                    document.getElementById('<?php echo $se2?>').style.display = 'none' ;
-                    document.getElementById('<?php echo $se3?>').style.display = 'block' ;"><?php echo htmlspecialchars($se3)?></option>
-                    </optgroup>
-               </select>
-               <!--Afficher le tableau des créneaux (ou autre ça dépend).-->
-               <!--Choisir 2 services payants pour la page paiement-->
-               </div>
-               <?php     
-          }
-          ?>
-     </div>
+                }
+                $reponse->closeCursor();
+                for ($i = 0; $i < $indicel; $i++) {
+                    echo "<option value='{$Noml[$i]}'>{$Noml[$i]}</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <?php
+        for ($i = 0; $i < $indicel; $i++) {
+            echo "<div id='{$Noml[$i]}' class='section-hidden'>";
+            echo "<div class='form-group'>";
+            echo "<label for='choixs'>Votre service</label>";
+            echo "<select class='form-control' name='choixs' id='choixs' onchange='showServiceCreneaux()'>";
+            echo "<option value=''>Sélectionnez un service</option>";
+
+            $ID = (int)$_POST['ID'];
+            $reponse = $bdd->query("SELECT Service1, Service2, Service3 FROM labos WHERE ID = $ID");
+            $donnees = $reponse->fetch();
+            $services = [$donnees['Service1'], $donnees['Service2'], $donnees['Service3']];
+            $reponse->closeCursor();
+
+            foreach ($services as $service) {
+                echo "<option value='{$service}'>{$service}</option>";
+            }
+
+            echo "</select>";
+            echo "</div>";
+            echo "<p>Afficher le tableau des créneaux (ou autre ça dépend)</p>";
+            echo "</div>";
+        }
+        ?>
+    </div>
+</div>
+
+<script>
+    function toggleSections() {
+        var choix = document.getElementById('choix').value;
+        document.getElementById('medecin').style.display = (choix === 'medecin') ? 'block' : 'none';
+        document.getElementById('labo').style.display = (choix === 'labo') ? 'block' : 'none';
+    }
+
+    function showMedecinCreneaux() {
+        var medecin = document.getElementById('choix-medecin').value;
+        <?php
+        for ($i = 0; $i < $indice; $i++) {
+            echo "document.getElementById('{$Nom[$i]}{$Prenom[$i]}').style.display = (medecin === '{$Nom[$i]}{$Prenom[$i]}') ? 'block' : 'none';";
+        }
+        ?>
+    }
+
+    function showLaboServices() {
+        var labo = document.getElementById('choix-labo').value;
+        <?php
+        for ($i = 0; $i < $indicel; $i++) {
+            echo "document.getElementById('{$Noml[$i]}').style.display = (labo === '{$Noml[$i]}') ? 'block' : 'none';";
+        }
+        ?>
+    }
+
+    function showServiceCreneaux() {
+        var service = document.getElementById('choixs').value;
+        <?php
+        foreach ($services as $service) {
+            echo "document.getElementById('{$service}').style.display = (service === '{$service}') ? 'block' : 'none';";
+        }
+        ?>
+    }
+</script>
   
   
          <!-- Footer -->
     <footer class="text-center mt-4">
         <p>&copy; 2024 Medicare. Tous droits réservés.</p>
         <p>Adresse: 1234 Rue de la Santé, 75000 Paris, France</p>
+        <p>Mail: medicare@ece.fr</p>
     </footer> 
         
         <!-- Fermeture de la communication serveur -->
