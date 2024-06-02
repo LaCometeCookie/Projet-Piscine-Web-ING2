@@ -93,26 +93,6 @@
             </div>
         </div>
     </nav>
-
-    <?php
-	if($ok)
-	{ ?>
-        <!-- Boutons communs à toutes les fenêtres (sauf connexion) -->
-       <button type="button" class="btn btn-link">
-            <a href = "index.php">Accueil</a></button> 
-       <button type="button" class="btn btn-link">
-            <a href = "parcourir.php">Parcourir</a>
-       </button>
-       <button type="button" class="btn btn-link">
-            <a href = "rdv.php">Rendez-vous</a>
-       </button>
-       <button type="button" class="btn btn-link">
-            <a href = "profil.php"><?php echo htmlspecialchars($donnees['Nom']) ." ". htmlspecialchars($donnees['Prenom']);?></a></button>
-       <button type="button" class="btn btn-info"> 
-            <a href = "recherche.php"><span class="glyphicon glyphicon-search"></span> Recherche </a>
-       </button>
-    <?php } ?>
-
   
      <!--Section RDV-->
      <h2>Sélectionnez votre type de RDV puis un médecin ou un laboratoire avant de sélectionner votre créneau</h2>
